@@ -1,0 +1,27 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# LOCK MANAGEMENT
+#------------------------------------------------------------------------------
+
+{% if deadlock_timeout is defined %}
+deadlock_timeout = {{ deadlock_timeout }}
+{% endif -%}
+
+{% if max_locks_per_transaction is defined %}
+max_locks_per_transaction = {{ max_locks_per_transaction }}
+{% endif -%}
+
+{% if max_pred_locks_per_transaction is defined %}
+max_pred_locks_per_transaction = {{ max_pred_locks_per_transaction }}
+{% endif -%}
+
+{% if max_pred_locks_per_relation is defined %}
+max_pred_locks_per_relation = {{ max_pred_locks_per_relation }}
+{% endif -%}
+
+{% if max_pred_locks_per_page is defined %}
+max_pred_locks_per_page = {{ max_pred_locks_per_page }}
+{% endif -%}

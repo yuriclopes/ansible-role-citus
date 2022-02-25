@@ -1,0 +1,127 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# CONNECTIONS AND AUTHENTICATION
+#------------------------------------------------------------------------------
+
+listen_addresses = '{{ listen_addresses | default('localhost') }}'
+port = {{ port | default(5432) }}
+max_connections = {{ max_connections | default(100) }}
+
+{% if superuser_reserved_connections is defined %}
+superuser_reserved_connections = {{ superuser_reserved_connections }}
+{% endif -%}
+
+unix_socket_directories = '{{ unix_socket_directories | default('/var/run/postgresql') }}'
+
+{% if unix_socket_group is defined %}
+unix_socket_group = '{{ unix_socket_group }}'
+{% endif -%}
+
+{% if unix_socket_permissions is defined %}
+unix_socket_permissions = {{ unix_socket_permissions }}
+{% endif -%}
+
+{% if bonjour is defined %}
+bonjour = {{ bonjour }}
+{% endif -%}
+
+{% if bonjour_name is defined %}
+bonjour_name = '{{ bonjour_name }}'
+{% endif -%}
+
+# - TCP settings -
+
+{% if tcp_keepalives_idle is defined %}
+tcp_keepalives_idle = {{ tcp_keepalives_idle }}
+{% endif -%}
+
+{% if tcp_keepalives_interval is defined %}
+tcp_keepalives_interval = {{ tcp_keepalives_interval }}
+{% endif -%}
+
+{% if tcp_keepalives_count is defined %}
+tcp_keepalives_count = {{ tcp_keepalives_count }}
+{% endif -%}
+
+{% if tcp_user_timeout is defined %}
+tcp_user_timeout = {{ tcp_user_timeout }}
+{% endif -%}
+
+{% if client_connection_check_interval is defined %}
+client_connection_check_interval = {{ client_connection_check_interval }}
+{% endif -%}
+
+# - Authentication -
+
+{% if authentication_timeout is defined %}
+authentication_timeout = {{ authentication_timeout }}
+{% endif -%}
+
+{% if password_encryption is defined %}
+password_encryption = '{{ password_encryption }}'
+{% endif -%}
+
+{% if db_user_namespace is defined %}
+db_user_namespace = {{ db_user_namespace }}
+{% endif -%}
+
+# - SSL -
+
+{% if ssl is defined %}
+ssl = {{ ssl }}
+{% endif -%}
+
+{% if ssl_ca_file is defined %}
+ssl_ca_file = '{{ ssl_ca_file }}'
+{% endif -%}
+
+{% if ssl_cert_file is defined %}
+ssl_cert_file = '{{ ssl_cert_file }}'
+{% endif -%}
+
+{% if ssl_crl_file is defined %}
+ssl_crl_file = '{{ ssl_crl_file }}'
+{% endif -%}
+
+{% if ssl_crl_dir is defined %}
+ssl_crl_dir = '{{ ssl_crl_dir }}'
+{% endif -%}
+
+{% if ssl_key_file is defined %}
+ssl_key_file = '{{ ssl_key_file }}'
+{% endif -%}
+
+{% if ssl_ciphers is defined %}
+ssl_ciphers = '{{ ssl_ciphers }}'
+{% endif -%}
+
+{% if ssl_prefer_server_ciphers is defined %}
+ssl_prefer_server_ciphers = {{ ssl_prefer_server_ciphers }}
+{% endif -%}
+
+{% if ssl_ecdh_curve is defined %}
+ssl_ecdh_curve = '{{ ssl_ecdh_curve }}'
+{% endif -%}
+
+{% if ssl_min_protocol_version is defined %}
+ssl_min_protocol_version = '{{ ssl_min_protocol_version }}'
+{% endif -%}
+
+{% if ssl_max_protocol_version is defined %}
+ssl_max_protocol_version = '{{ ssl_max_protocol_version }}'
+{% endif -%}
+
+{% if ssl_dh_params_file is defined %}
+ssl_dh_params_file = '{{ ssl_dh_params_file }}'
+{% endif -%}
+
+{% if ssl_passphrase_command is defined %}
+ssl_passphrase_command = '{{ ssl_passphrase_command }}'
+{% endif -%}
+
+{% if ssl_passphrase_command_supports_reload is defined %}
+ssl_passphrase_command_supports_reload = {{ ssl_passphrase_command_supports_reload }}
+{% endif -%}

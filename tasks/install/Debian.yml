@@ -1,0 +1,28 @@
+---
+- name: Install apt packages
+  package:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items: "{{ debian_apt_packages }}"
+  tags:
+    - role_install
+
+- name: Add an Apt signing key, uses whichever key is at the URL
+  ansible.builtin.apt_key:
+    url: "{{ item }}"
+    state: present
+  become: yes
+  with_items: "{{ debian_apt_keys }}"
+  tags:
+    - role_install
+
+- name: Install apt repositories
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    update_cache: true
+  become: yes
+  with_items: "{{ debian_apt_repos }}"
+  tags:
+    - role_install

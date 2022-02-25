@@ -1,0 +1,157 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# WRITE-AHEAD LOG
+#------------------------------------------------------------------------------
+
+# - Settings -
+
+{% if wal_level is defined %}
+wal_level = '{{ wal_level }}'
+{% endif -%}
+
+{% if fsync is defined %}
+fsync = {{ fsync }}
+{% endif -%}
+
+{% if synchronous_commit is defined %}
+synchronous_commit = {{ synchronous_commit }}
+{% endif -%}
+
+{% if wal_sync_method is defined %}
+wal_sync_method = '{{ wal_sync_method }}'
+{% endif -%}
+
+{% if full_page_writes is defined %}
+full_page_writes = {{ full_page_writes }}
+{% endif -%}
+
+{% if wal_log_hints is defined %}
+wal_log_hints = {{ wal_log_hints }}
+{% endif -%}
+
+{% if wal_compression is defined %}
+wal_compression = {{ wal_compression }}
+{% endif -%}
+
+{% if wal_init_zero is defined %}
+wal_init_zero = {{ wal_init_zero }}
+{% endif -%}
+
+{% if wal_recycle is defined %}
+wal_recycle = {{ wal_recycle }}
+{% endif -%}
+
+{% if wal_buffers is defined %}
+wal_buffers = {{ wal_buffers }}
+{% endif -%}
+
+{% if wal_writer_delay is defined %}
+wal_writer_delay = {{ wal_writer_delay }}
+{% endif -%}
+
+{% if wal_writer_flush_after is defined %}
+wal_writer_flush_after = {{ wal_writer_flush_after }}
+{% endif -%}
+
+{% if wal_skip_threshold is defined %}
+wal_skip_threshold = {{ wal_skip_threshold }}
+{% endif -%}
+
+{% if commit_delay is defined %}
+commit_delay = {{ commit_delay }}
+{% endif -%}
+
+{% if commit_siblings is defined %}
+commit_siblings = {{ commit_siblings }}
+{% endif -%}
+
+# - Checkpoints -
+
+{% if checkpoint_timeout is defined %}
+checkpoint_timeout = {{ checkpoint_timeout }}
+{% endif -%}
+
+{% if checkpoint_completion_target is defined %}
+checkpoint_completion_target = {{ checkpoint_completion_target }}
+{% endif -%}
+
+{% if checkpoint_flush_after is defined %}
+checkpoint_flush_after = {{ checkpoint_flush_after }}
+{% endif -%}
+
+{% if checkpoint_warning is defined %}
+checkpoint_warning = {{ checkpoint_warning }}
+{% endif -%}
+
+{% if max_wal_size is defined %}
+max_wal_size = {{ max_wal_size }}
+{% endif -%}
+
+{% if min_wal_size is defined %}
+min_wal_size = {{ min_wal_size }}
+{% endif -%}
+
+# - Archiving -
+
+{% if archive_mode is defined %}
+archive_mode = {{ archive_mode }}
+{% endif -%}
+
+{% if archive_command is defined %}
+archive_command = '{{ archive_command }}'
+{% endif -%}
+
+{% if archive_timeout is defined %}
+archive_timeout = {{ archive_timeout }}
+{% endif -%}
+
+# - Archive Recovery -
+
+{% if restore_command is defined %}
+restore_command = '{{ restore_command }}'
+{% endif -%}
+
+{% if archive_cleanup_command is defined %}
+archive_cleanup_command = '{{ archive_cleanup_command }}'
+{% endif -%}
+
+{% if recovery_end_command is defined %}
+recovery_end_command = '{{ recovery_end_command }}'
+{% endif -%}
+
+# - Recovery Target -
+
+{% if recovery_target is defined %}
+recovery_target = '{{ recovery_target }}'
+{% endif -%}
+
+{% if recovery_target_name is defined %}
+recovery_target_name = '{{ recovery_target_name }}'
+{% endif -%}
+
+{% if recovery_target_time is defined %}
+recovery_target_time = '{{ recovery_target_time }}'
+{% endif -%}
+
+{% if recovery_target_xid is defined %}
+recovery_target_xid = '{{ recovery_target_xid }}'
+{% endif -%}
+
+{% if recovery_target_lsn is defined %}
+recovery_target_lsn = '{{ recovery_target_lsn }}'
+{% endif -%}
+
+{% if recovery_target_inclusive is defined %}
+recovery_target_inclusive = {{ recovery_target_inclusive }}
+{% endif -%}
+
+{% if recovery_target_timeline is defined %}
+recovery_target_timeline = '{{ recovery_target_timeline }}'
+{% endif -%}
+
+{% if recovery_target_action is defined %}
+recovery_target_action = '{{ recovery_target_action }}'
+{% endif -%}

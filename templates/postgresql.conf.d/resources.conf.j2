@@ -1,0 +1,153 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# RESOURCE USAGE (except WAL)
+#------------------------------------------------------------------------------
+
+# - Memory -
+
+shared_buffers = {{ shared_buffers }}
+
+{% if huge_pages is defined %}
+huge_pages = '{{ huge_pages }}'
+{% endif -%}
+
+{% if huge_page_size is defined %}
+huge_page_size = {{ huge_page_size }}
+{% endif -%}
+
+{% if temp_buffers is defined %}
+temp_buffers = {{ temp_buffers }}
+{% endif -%}
+
+{% if max_prepared_transactions is defined %}
+max_prepared_transactions = {{ max_prepared_transactions }}
+{% endif -%}
+
+{% if work_mem is defined %}
+work_mem = {{ work_mem }}
+{% endif -%}
+
+{% if hash_mem_multiplier is defined %}
+hash_mem_multiplier = {{ hash_mem_multiplier }}
+{% endif -%}
+
+{% if maintenance_work_mem is defined %}
+maintenance_work_mem = {{ maintenance_work_mem }}
+{% endif -%}
+
+{% if autovacuum_work_mem is defined %}
+autovacuum_work_mem = {{ autovacuum_work_mem }}
+{% endif -%}
+
+{% if logical_decoding_work_mem is defined %}
+logical_decoding_work_mem = {{ logical_decoding_work_mem }}
+{% endif -%}
+
+{% if max_stack_depth is defined %}
+max_stack_depth = {{ max_stack_depth }}
+{% endif -%}
+
+{% if shared_memory_type is defined %}
+shared_memory_type = '{{ shared_memory_type }}'
+{% endif -%}
+
+{% if dynamic_shared_memory_type is defined %}
+dynamic_shared_memory_type = '{{ dynamic_shared_memory_type }}'
+{% endif -%}
+
+{% if min_dynamic_shared_memory is defined %}
+min_dynamic_shared_memory = {{ min_dynamic_shared_memory }}
+{% endif -%}
+
+# - Disk -
+
+{% if temp_file_limit is defined %}
+temp_file_limit = {{ temp_file_limit }}
+{% endif -%}
+
+# - Kernel Resources -
+
+{% if max_files_per_process is defined %}
+max_files_per_process = {{ max_files_per_process }}
+{% endif -%}
+
+# - Cost-Based Vacuum Delay -
+
+{% if vacuum_cost_delay is defined %}
+vacuum_cost_delay = {{ vacuum_cost_delay }}
+{% endif -%}
+
+{% if vacuum_cost_page_hit is defined %}
+vacuum_cost_page_hit = {{ vacuum_cost_page_hit }}
+{% endif -%}
+
+{% if vacuum_cost_page_miss is defined %}
+vacuum_cost_page_miss = {{ vacuum_cost_page_miss }}
+{% endif -%}
+
+{% if vacuum_cost_page_dirty is defined %}
+vacuum_cost_page_dirty = {{ vacuum_cost_page_dirty }}
+{% endif -%}
+
+{% if vacuum_cost_limit is defined %}
+vacuum_cost_limit = {{ vacuum_cost_limit }}
+{% endif -%}
+
+# - Background Writer -
+
+{% if bgwriter_delay is defined %}
+bgwriter_delay = {{ bgwriter_delay }}
+{% endif -%}
+
+{% if bgwriter_lru_maxpages is defined %}
+bgwriter_lru_maxpages = {{ bgwriter_lru_maxpages }}
+{% endif -%}
+
+{% if bgwriter_lru_multiplier is defined %}
+bgwriter_lru_multiplier = {{ bgwriter_lru_multiplier }}
+{% endif -%}
+
+{% if bgwriter_flush_after is defined %}
+bgwriter_flush_after = {{ bgwriter_flush_after }}
+{% endif -%}
+
+# - Asynchronous Behavior -
+
+{% if backend_flush_after is defined %}
+backend_flush_after = {{ backend_flush_after }}
+{% endif -%}
+
+{% if effective_io_concurrency is defined %}
+effective_io_concurrency = {{ effective_io_concurrency }}
+{% endif -%}
+
+{% if maintenance_io_concurrency is defined %}
+maintenance_io_concurrency = {{ maintenance_io_concurrency }}
+{% endif -%}
+
+{% if max_worker_processes is defined %}
+max_worker_processes = {{ max_worker_processes }}
+{% endif -%}
+
+{% if max_parallel_workers_per_gather is defined %}
+max_parallel_workers_per_gather = {{ max_parallel_workers_per_gather }}
+{% endif -%}
+
+{% if max_parallel_maintenance_workers is defined %}
+max_parallel_maintenance_workers = {{ max_parallel_maintenance_workers }}
+{% endif -%}
+
+{% if max_parallel_workers is defined %}
+max_parallel_workers = {{ max_parallel_workers }}
+{% endif -%}
+
+{% if parallel_leader_participation is defined %}
+parallel_leader_participation = {{ parallel_leader_participation }}
+{% endif -%}
+
+{% if old_snapshot_threshold is defined %}
+old_snapshot_threshold = {{ old_snapshot_threshold }}
+{% endif -%}

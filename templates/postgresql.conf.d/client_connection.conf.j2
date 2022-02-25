@@ -1,0 +1,191 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# CLIENT CONNECTION DEFAULTS
+#------------------------------------------------------------------------------
+
+# - Statement Behavior -
+
+{% if client_min_messages is defined %}
+client_min_messages = '{{ client_min_messages }}'
+{% endif -%}
+
+{% if search_path is defined %}
+search_path = '{{ search_path }}'
+{% endif -%}
+
+{% if row_security is defined %}
+row_security = {{ row_security }}
+{% endif -%}
+
+{% if default_table_access_method is defined %}
+default_table_access_method = '{{ default_table_access_method }}'
+{% endif -%}
+
+{% if default_tablespace is defined %}
+default_tablespace = '{{ default_tablespace }}'
+{% endif -%}
+
+{% if default_toast_compression is defined %}
+default_toast_compression = '{{ default_toast_compression }}'
+{% endif -%}
+
+{% if temp_tablespaces is defined %}
+temp_tablespaces = '{{ temp_tablespaces }}'
+{% endif -%}
+
+{% if check_function_bodies is defined %}
+check_function_bodies = {{ check_function_bodies }}
+{% endif -%}
+
+{% if default_transaction_isolation is defined %}
+default_transaction_isolation = '{{ default_transaction_isolation }}'
+{% endif -%}
+
+{% if default_transaction_read_only is defined %}
+default_transaction_read_only = {{ default_transaction_read_only }}
+{% endif -%}
+
+{% if default_transaction_deferrable is defined %}
+default_transaction_deferrable = {{ default_transaction_deferrable }}
+{% endif -%}
+
+{% if session_replication_role is defined %}
+session_replication_role = '{{ session_replication_role }}'
+{% endif -%}
+
+{% if statement_timeout is defined %}
+statement_timeout = {{ statement_timeout }}
+{% endif -%}
+
+{% if lock_timeout is defined %}
+lock_timeout = {{ lock_timeout }}
+{% endif -%}
+
+{% if idle_in_transaction_session_timeout is defined %}
+idle_in_transaction_session_timeout = {{ idle_in_transaction_session_timeout }}
+{% endif -%}
+
+{% if idle_session_timeout is defined %}
+idle_session_timeout = {{ idle_session_timeout }}
+{% endif -%}
+
+{% if vacuum_freeze_table_age is defined %}
+vacuum_freeze_table_age = {{ vacuum_freeze_table_age }}
+{% endif -%}
+
+{% if vacuum_freeze_min_age is defined %}
+vacuum_freeze_min_age = {{ vacuum_freeze_min_age }}
+{% endif -%}
+
+{% if vacuum_failsafe_age is defined %}
+vacuum_failsafe_age = {{ vacuum_failsafe_age }}
+{% endif -%}
+
+{% if vacuum_multixact_freeze_table_age is defined %}
+vacuum_multixact_freeze_table_age = {{ vacuum_multixact_freeze_table_age }}
+{% endif -%}
+
+{% if vacuum_multixact_freeze_min_age is defined %}
+vacuum_multixact_freeze_min_age = {{ vacuum_multixact_freeze_min_age }}
+{% endif -%}
+
+{% if vacuum_multixact_failsafe_age is defined %}
+vacuum_multixact_failsafe_age = {{ vacuum_multixact_failsafe_age }}
+{% endif -%}
+
+{% if bytea_output is defined %}
+bytea_output = '{{ bytea_output }}'
+{% endif -%}
+
+{% if xmlbinary is defined %}
+xmlbinary = '{{ xmlbinary }}'
+{% endif -%}
+
+{% if xmloption is defined %}
+xmloption = '{{ xmloption }}'
+{% endif -%}
+
+{% if gin_pending_list_limit is defined %}
+gin_pending_list_limit = {{ gin_pending_list_limit }}
+{% endif -%}
+
+# - Locale and Formatting -
+
+{% if datestyle is defined %}
+datestyle = '{{ datestyle }}'
+{% endif -%}
+
+{% if intervalstyle is defined %}
+intervalstyle = '{{ intervalstyle }}'
+{% endif -%}
+
+{% if timezone is defined %}
+timezone = '{{ timezone }}'
+{% endif -%}
+
+{% if timezone_abbreviations is defined %}
+timezone_abbreviations = '{{ timezone_abbreviations }}'
+{% endif -%}
+
+{% if extra_float_digits is defined %}
+extra_float_digits = {{ extra_float_digits }}
+{% endif -%}
+
+{% if client_encoding is defined %}
+client_encoding = '{{ client_encoding }}'
+{% endif -%}
+
+{% if lc_messages is defined %}
+lc_messages = '{{ lc_messages }}'
+{% endif -%}
+
+{% if lc_monetary is defined %}
+lc_monetary = '{{ lc_monetary }}'
+{% endif -%}
+
+{% if lc_numeric is defined %}
+lc_numeric = '{{ lc_numeric }}'
+{% endif -%}
+
+{% if lc_time is defined %}
+lc_time = '{{ lc_time }}'
+{% endif -%}
+
+{% if default_text_search_config is defined %}
+default_text_search_config = '{{ default_text_search_config }}'
+{% endif -%}
+
+# - Shared Library Preloading -
+
+{% if local_preload_libraries is defined %}
+local_preload_libraries = '{{ local_preload_libraries }}'
+{% endif -%}
+
+{% if session_preload_libraries is defined %}
+session_preload_libraries = '{{ session_preload_libraries }}'
+{% endif -%}
+
+{% if shared_preload_libraries is defined %}
+shared_preload_libraries = '{{ shared_preload_libraries }}'
+{% endif -%}
+
+{% if jit_provider is defined %}
+jit_provider = '{{ jit_provider }}'
+{% endif -%}
+
+# - Other Defaults -
+
+{% if dynamic_library_path is defined %}
+dynamic_library_path = '{{ dynamic_library_path }}'
+{% endif -%}
+
+{% if extension_destdir is defined %}
+extension_destdir = '{{ extension_destdir }}'
+{% endif -%}
+
+{% if gin_fuzzy_search_limit is defined %}
+gin_fuzzy_search_limit = {{ gin_fuzzy_search_limit }}
+{% endif -%}

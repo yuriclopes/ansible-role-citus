@@ -1,0 +1,43 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# VERSION AND PLATFORM COMPATIBILITY
+#------------------------------------------------------------------------------
+
+# - Previous PostgreSQL Versions -
+
+{% if array_nulls is defined %}
+array_nulls = {{ array_nulls }}
+{% endif -%}
+
+{% if backslash_quote is defined %}
+backslash_quote = '{{ backslash_quote }}'
+{% endif -%}
+
+{% if escape_string_warning is defined %}
+escape_string_warning = {{ escape_string_warning }}
+{% endif -%}
+
+{% if lo_compat_privileges is defined %}
+lo_compat_privileges = {{ lo_compat_privileges }}
+{% endif -%}
+
+{% if quote_all_identifiers is defined %}
+quote_all_identifiers = {{ quote_all_identifiers }}
+{% endif -%}
+
+{% if standard_conforming_strings is defined %}
+standard_conforming_strings = {{ standard_conforming_strings }}
+{% endif -%}
+
+{% if synchronize_seqscans is defined %}
+synchronize_seqscans = {{ synchronize_seqscans }}
+{% endif -%}
+
+# - Other Platforms and Clients -
+
+{% if transform_null_equals is defined %}
+transform_null_equals = {{ transform_null_equals }}
+{% endif -%}

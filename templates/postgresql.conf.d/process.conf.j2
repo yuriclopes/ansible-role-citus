@@ -1,0 +1,13 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# PROCESS TITLE
+#------------------------------------------------------------------------------
+
+cluster_name = '{{ cluster_name }}'
+
+{% if update_process_title is defined %}
+update_process_title = {{ update_process_title }}
+{% endif -%}
