@@ -1,2 +1,29 @@
 ---
-# handlers file for postgresql-citus
+- name: Daemon reload
+  systemd:
+    daemon_reload: yes
+  become: true
+
+- name: Enable postgresql service
+  systemd:
+    name: postgresql.service
+    enabled: yes
+  become: true
+
+- name: Start postgresql service
+  systemd:
+    name: postgresql.service
+    state: started
+  become: true
+
+- name: Stop postgresql service
+  systemd:
+    name: postgresql.service
+    state: stopped
+  become: true
+
+- name: Restart postgresql service
+  systemd:
+    name: postgresql.service
+    state: restarted
+  become: true
