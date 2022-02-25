@@ -1,0 +1,40 @@
+---
+- name: Create postgresql.conf file
+  template:
+    src: "postgresql.conf.j2"
+    dest: "{{ pgsql_config_file }}"
+    owner: postgres
+    group: postgres
+    mode: 0644
+  become: true
+  tags:
+    - role_install
+    - role_configure
+
+- name: Create postgresql.conf.d files
+  template:
+    src: "postgresql.conf.d/{{ item }}.j2"
+    dest: "{{ pgsql_config_directory }}/conf.d/{{ item }}"
+    owner: postgres
+    group: postgres
+    mode: 0644
+  become: true
+  with_items:
+    - "autovacuum.conf"
+    - "compatibility.conf"
+    - "custom.conf"
+    - "files.conf"
+    - "logging.conf"
+    - "query_tuning.conf"
+    - "resources.conf"
+    - "wal.conf"
+    - "client_connection.conf"
+    - "connections.conf"
+    - "error_handling.conf"
+    - "lock_management.conf"
+    - "process.conf"
+    - "replication.conf"
+    - "statistics.conf"
+  tags:
+    - role_install
+    - role_configure

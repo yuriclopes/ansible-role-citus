@@ -1,0 +1,103 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# REPLICATION
+#------------------------------------------------------------------------------
+
+# - Sending Servers -
+
+{% if max_wal_senders is defined %}
+max_wal_senders = {{ max_wal_senders }}
+{% endif -%}
+
+{% if max_replication_slots is defined %}
+max_replication_slots = {{ max_replication_slots }}
+{% endif -%}
+
+{% if wal_keep_size is defined %}
+wal_keep_size = {{ wal_keep_size }}
+{% endif -%}
+
+{% if max_slot_wal_keep_size is defined %}
+max_slot_wal_keep_size = {{ max_slot_wal_keep_size }}
+{% endif -%}
+
+{% if wal_sender_timeout is defined %}
+wal_sender_timeout = {{ wal_sender_timeout }}
+{% endif -%}
+
+{% if track_commit_timestamp is defined %}
+track_commit_timestamp = {{ track_commit_timestamp }}
+{% endif -%}
+
+# - Primary Server -
+
+{% if synchronous_standby_names is defined %}
+synchronous_standby_names = '{{ synchronous_standby_names }}'
+{% endif -%}
+
+{% if vacuum_defer_cleanup_age is defined %}
+vacuum_defer_cleanup_age = {{ vacuum_defer_cleanup_age }}
+{% endif -%}
+
+# - Standby Servers -
+
+{% if primary_conninfo is defined %}
+primary_conninfo = '{{ primary_conninfo }}'
+{% endif -%}
+
+{% if primary_slot_name is defined %}
+primary_slot_name = '{{ primary_slot_name }}'
+{% endif -%}
+
+{% if promote_trigger_file is defined %}
+promote_trigger_file = '{{ promote_trigger_file }}'
+{% endif -%}
+
+{% if hot_standby is defined %}
+hot_standby = {{ hot_standby }}
+{% endif -%}
+
+{% if max_standby_archive_delay is defined %}
+max_standby_archive_delay = {{ max_standby_archive_delay }}
+{% endif -%}
+
+{% if max_standby_streaming_delay is defined %}
+max_standby_streaming_delay = {{ max_standby_streaming_delay }}
+{% endif -%}
+
+{% if wal_receiver_create_temp_slot is defined %}
+wal_receiver_create_temp_slot = {{ wal_receiver_create_temp_slot }}
+{% endif -%}
+
+{% if wal_receiver_status_interval is defined %}
+wal_receiver_status_interval = {{ wal_receiver_status_interval }}
+{% endif -%}
+
+{% if hot_standby_feedback is defined %}
+hot_standby_feedback = {{ hot_standby_feedback }}
+{% endif -%}
+
+{% if wal_receiver_timeout is defined %}
+wal_receiver_timeout = {{ wal_receiver_timeout }}
+{% endif -%}
+
+{% if wal_retrieve_retry_interval is defined %}
+wal_retrieve_retry_interval = {{ wal_retrieve_retry_interval }}
+{% endif -%}
+
+{% if recovery_min_apply_delay is defined %}
+recovery_min_apply_delay = {{ recovery_min_apply_delay }}
+{% endif -%}
+
+# - Subscribers -
+
+{% if max_logical_replication_workers is defined %}
+max_logical_replication_workers = {{ max_logical_replication_workers }}
+{% endif -%}
+
+{% if max_sync_workers_per_subscription is defined %}
+max_sync_workers_per_subscription = {{ max_sync_workers_per_subscription }}
+{% endif -%}

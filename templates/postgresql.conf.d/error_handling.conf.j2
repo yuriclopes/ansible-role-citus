@@ -1,0 +1,23 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# ERROR HANDLING
+#------------------------------------------------------------------------------
+
+{% if exit_on_error is defined %}
+exit_on_error = {{ exit_on_error }}
+{% endif -%}
+
+{% if restart_after_crash is defined %}
+restart_after_crash = {{ restart_after_crash }}
+{% endif -%}
+
+{% if data_sync_retry is defined %}
+data_sync_retry = {{ data_sync_retry }}
+{% endif -%}
+
+{% if recovery_init_sync_method is defined %}
+recovery_init_sync_method = '{{ recovery_init_sync_method }}'
+{% endif -%}

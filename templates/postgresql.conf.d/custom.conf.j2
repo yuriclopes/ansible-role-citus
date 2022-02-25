@@ -1,0 +1,13 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# CUSTOMIZED OPTIONS
+#------------------------------------------------------------------------------
+
+{% if customized_options is defined %}
+{% for key, value in customized_options.items() %}
+{{ key }}: {{ value }}
+{% endfor -%}
+{% endif %}

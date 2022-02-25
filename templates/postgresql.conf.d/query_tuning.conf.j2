@@ -1,0 +1,203 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# QUERY TUNING
+#------------------------------------------------------------------------------
+
+# - Planner Method Configuration -
+
+{% if enable_async_append is defined %}
+enable_async_append = {{ enable_async_append }}
+{% endif -%}
+
+{% if enable_bitmapscan is defined %}
+enable_bitmapscan = {{ enable_bitmapscan }}
+{% endif -%}
+
+{% if enable_gathermerge is defined %}
+enable_gathermerge = {{ enable_gathermerge }}
+{% endif -%}
+
+{% if enable_hashagg is defined %}
+enable_hashagg = {{ enable_hashagg }}
+{% endif -%}
+
+{% if enable_hashjoin is defined %}
+enable_hashjoin = {{ enable_hashjoin }}
+{% endif -%}
+
+{% if enable_incremental_sort is defined %}
+enable_incremental_sort = {{ enable_incremental_sort }}
+{% endif -%}
+
+{% if enable_indexscan is defined %}
+enable_indexscan = {{ enable_indexscan }}
+{% endif -%}
+
+{% if enable_indexonlyscan is defined %}
+enable_indexonlyscan = {{ enable_indexonlyscan }}
+{% endif -%}
+
+{% if enable_material is defined %}
+enable_material = {{ enable_material }}
+{% endif -%}
+
+{% if enable_memoize is defined %}
+enable_memoize = {{ enable_memoize }}
+{% endif -%}
+
+{% if enable_mergejoin is defined %}
+enable_mergejoin = {{ enable_mergejoin }}
+{% endif -%}
+
+{% if enable_nestloop is defined %}
+enable_nestloop = {{ enable_nestloop }}
+{% endif -%}
+
+{% if enable_parallel_append is defined %}
+enable_parallel_append = {{ enable_parallel_append }}
+{% endif -%}
+
+{% if enable_parallel_hash is defined %}
+enable_parallel_hash = {{ enable_parallel_hash }}
+{% endif -%}
+
+{% if enable_partition_pruning is defined %}
+enable_partition_pruning = {{ enable_partition_pruning }}
+{% endif -%}
+
+{% if enable_partitionwise_join is defined %}
+enable_partitionwise_join = {{ enable_partitionwise_join }}
+{% endif -%}
+
+{% if enable_partitionwise_aggregate is defined %}
+enable_partitionwise_aggregate = {{ enable_partitionwise_aggregate }}
+{% endif -%}
+
+{% if enable_seqscan is defined %}
+enable_seqscan = {{ enable_seqscan }}
+{% endif -%}
+
+{% if enable_sort is defined %}
+enable_sort = {{ enable_sort }}
+{% endif -%}
+
+{% if enable_tidscan is defined %}
+enable_tidscan = {{ enable_tidscan }}
+{% endif -%}
+
+# - Planner Cost Constants -
+
+{% if seq_page_cost is defined %}
+seq_page_cost = {{ seq_page_cost }}
+{% endif -%}
+
+{% if random_page_cost is defined %}
+random_page_cost = {{ random_page_cost }}
+{% endif -%}
+
+{% if cpu_tuple_cost is defined %}
+cpu_tuple_cost = {{ cpu_tuple_cost }}
+{% endif -%}
+
+{% if cpu_index_tuple_cost is defined %}
+cpu_index_tuple_cost = {{ cpu_index_tuple_cost }}
+{% endif -%}
+
+{% if cpu_operator_cost is defined %}
+cpu_operator_cost = {{ cpu_operator_cost }}
+{% endif -%}
+
+{% if parallel_setup_cost is defined %}
+parallel_setup_cost = {{ parallel_setup_cost }}
+{% endif -%}
+
+{% if parallel_tuple_cost is defined %}
+parallel_tuple_cost = {{ parallel_tuple_cost }}
+{% endif -%}
+
+{% if min_parallel_table_scan_size is defined %}
+min_parallel_table_scan_size = {{ min_parallel_table_scan_size }}
+{% endif -%}
+
+{% if min_parallel_index_scan_size is defined %}
+min_parallel_index_scan_size = {{ min_parallel_index_scan_size }}
+{% endif -%}
+
+{% if effective_cache_size is defined %}
+effective_cache_size = {{ effective_cache_size }}
+{% endif -%}
+
+{% if jit_above_cost is defined %}
+jit_above_cost = {{ jit_above_cost }}
+{% endif -%}
+
+{% if jit_inline_above_cost is defined %}
+jit_inline_above_cost = {{ jit_inline_above_cost }}
+{% endif -%}
+
+{% if jit_optimize_above_cost is defined %}
+jit_optimize_above_cost = {{ jit_optimize_above_cost }}
+{% endif -%}
+
+# - Genetic Query Optimizer -
+
+{% if geqo is defined %}
+geqo = {{ geqo }}
+{% endif -%}
+
+{% if geqo_threshold is defined %}
+geqo_threshold = {{ geqo_threshold }}
+{% endif -%}
+
+{% if geqo_effort is defined %}
+geqo_effort = {{ geqo_effort }}
+{% endif -%}
+
+{% if geqo_pool_size is defined %}
+geqo_pool_size = {{ geqo_pool_size }}
+{% endif -%}
+
+{% if geqo_generations is defined %}
+geqo_generations = {{ geqo_generations }}
+{% endif -%}
+
+{% if geqo_selection_bias is defined %}
+geqo_selection_bias = {{ geqo_selection_bias }}
+{% endif -%}
+
+{% if geqo_seed is defined %}
+geqo_seed = {{ geqo_seed }}
+{% endif -%}
+
+# - Other Planner Options -
+
+{% if default_statistics_target is defined %}
+default_statistics_target = {{ default_statistics_target }}
+{% endif -%}
+
+{% if constraint_exclusion is defined %}
+constraint_exclusion = '{{ constraint_exclusion }}'
+{% endif -%}
+
+{% if cursor_tuple_fraction is defined %}
+cursor_tuple_fraction = {{ cursor_tuple_fraction }}
+{% endif -%}
+
+{% if from_collapse_limit is defined %}
+from_collapse_limit = {{ from_collapse_limit }}
+{% endif -%}
+
+{% if jit is defined %}
+jit = {{ jit }}
+{% endif -%}
+
+{% if join_collapse_limit is defined %}
+join_collapse_limit = {{ join_collapse_limit }}
+{% endif -%}
+
+{% if plan_cache_mode is defined %}
+plan_cache_mode = '{{ plan_cache_mode }}'
+{% endif -%}

@@ -1,0 +1,8 @@
+---
+- name: Install Citus Postgresql package
+  package:
+    name: "postgresql-{{ postgresql_release }}-citus-{{ citus_release }}"
+    state: present
+  become: yes
+  tags:
+    - role_install

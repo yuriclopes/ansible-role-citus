@@ -1,0 +1,16 @@
+---
+- name: Include OS specific tasks
+  include_tasks: "install/{{ ansible_os_family }}.yml"
+  tags:
+    - role_install
+
+- name: Include Citus specific tasks
+  include_tasks: "install/Citus.yml"
+  tags:
+    - role_install
+
+- name: Include PostgreSQL Configuration tasks
+  include_tasks: "configure/postgresql.yml"
+  tags:
+    - role_install
+    - role_configure

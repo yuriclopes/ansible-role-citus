@@ -1,0 +1,59 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# STATISTICS
+#------------------------------------------------------------------------------
+
+# - Query and Index Statistics Collector -
+
+{% if track_activities is defined %}
+track_activities = {{ track_activities }}
+{% endif -%}
+
+{% if track_activity_query_size is defined %}
+track_activity_query_size = {{ track_activity_query_size }}
+{% endif -%}
+
+{% if track_counts is defined %}
+track_counts = {{ track_counts }}
+{% endif -%}
+
+{% if track_io_timing is defined %}
+track_io_timing = {{ track_io_timing }}
+{% endif -%}
+
+{% if track_wal_io_timing is defined %}
+track_wal_io_timing = {{ track_wal_io_timing }}
+{% endif -%}
+
+{% if track_functions is defined %}
+track_functions = '{{ track_functions }}'
+{% endif -%}
+
+{% if stats_temp_directory is defined %}
+stats_temp_directory = '{{ stats_temp_directory }}'
+{% endif -%}
+
+# - Monitoring -
+
+{% if compute_query_id is defined %}
+compute_query_id = '{{ compute_query_id }}'
+{% endif -%}
+
+{% if log_statement_stats is defined %}
+log_statement_stats = {{ log_statement_stats }}
+{% endif -%}
+
+{% if log_parser_stats is defined %}
+log_parser_stats = {{ log_parser_stats }}
+{% endif -%}
+
+{% if log_planner_stats is defined %}
+log_planner_stats = {{ log_planner_stats }}
+{% endif -%}
+
+{% if log_executor_stats is defined %}
+log_executor_stats = {{ log_executor_stats }}
+{% endif -%}

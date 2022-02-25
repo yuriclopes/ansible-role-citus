@@ -1,0 +1,59 @@
+######################
+# Managed by Ansible #
+######################
+
+#------------------------------------------------------------------------------
+# AUTOVACUUM
+#------------------------------------------------------------------------------
+
+{% if autovacuum is defined %}
+autovacuum = {{ autovacuum }}
+{% endif -%}
+
+{% if autovacuum_max_workers is defined %}
+autovacuum_max_workers = {{ autovacuum_max_workers }}
+{% endif -%}
+
+{% if autovacuum_naptime is defined %}
+autovacuum_naptime = {{ autovacuum_naptime }}
+{% endif -%}
+
+{% if autovacuum_vacuum_threshold is defined %}
+autovacuum_vacuum_threshold = {{ autovacuum_vacuum_threshold }}
+{% endif -%}
+
+{% if autovacuum_vacuum_insert_threshold is defined %}
+autovacuum_vacuum_insert_threshold = {{ autovacuum_vacuum_insert_threshold }}
+{% endif -%}
+
+{% if autovacuum_analyze_threshold is defined %}
+autovacuum_analyze_threshold = {{ autovacuum_analyze_threshold }}
+{% endif -%}
+
+{% if autovacuum_vacuum_scale_factor is defined %}
+autovacuum_vacuum_scale_factor = {{ autovacuum_vacuum_scale_factor }}
+{% endif -%}
+
+{% if autovacuum_vacuum_insert_scale_factor is defined %}
+autovacuum_vacuum_insert_scale_factor = {{ autovacuum_vacuum_insert_scale_factor }}
+{% endif -%}
+
+{% if autovacuum_analyze_scale_factor is defined %}
+autovacuum_analyze_scale_factor = {{ autovacuum_analyze_scale_factor }}
+{% endif -%}
+
+{% if autovacuum_freeze_max_age is defined %}
+autovacuum_freeze_max_age = {{ autovacuum_freeze_max_age }}
+{% endif -%}
+
+{% if autovacuum_multixact_freeze_max_age is defined %}
+autovacuum_multixact_freeze_max_age = {{ autovacuum_multixact_freeze_max_age }}
+{% endif -%}
+
+{% if autovacuum_vacuum_cost_delay is defined %}
+autovacuum_vacuum_cost_delay = {{ autovacuum_vacuum_cost_delay }}
+{% endif -%}
+
+{% if autovacuum_vacuum_cost_limit is defined %}
+autovacuum_vacuum_cost_limit = {{ autovacuum_vacuum_cost_limit }}
+{% endif -%}
