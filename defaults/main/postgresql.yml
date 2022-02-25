@@ -27,7 +27,7 @@ external_pid_file: "/var/run/postgresql/{{ pgsql_release }}-main.pid"
 
 # - Connection Settings -
 
-listen_addresses: 'localhost' 
+listen_addresses: '*' 
 port: 5432
 max_connections: 100
 # superuser_reserved_connections: 3
@@ -428,7 +428,7 @@ default_text_search_config: 'pg_catalog.english'
 
 # local_preload_libraries: ''
 # session_preload_libraries: ''
-# shared_preload_libraries: ''
+shared_preload_libraries: 'citus'
 # jit_provider: 'llvmjit'
 
 # - Other Defaults -
