@@ -2,10 +2,36 @@
 dependency:
   name: galaxy
 driver:
-  name: delegated
+  name: docker
 platforms:
-  - name: instance
+  - name: citus-coordinator-01
+    privileged: True
+    groups:
+      - debian
+    image: yuriclopes/debian-systemd:11.2-slim
+    pre_build_image: true
+    command: /sbin/init
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: citus-worker-01
+    privileged: True
+    groups:
+      - debian
+    image: yuriclopes/debian-systemd:11.2-slim
+    pre_build_image: true
+    command: /sbin/init
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 provisioner:
   name: ansible
+  group_vars:
+    debian:
+      ansible_user: ansible
 verifier:
   name: ansible
