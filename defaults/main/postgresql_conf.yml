@@ -1,13 +1,7 @@
-pgsql_release: 14
-
 pgsql_config_directory: "/etc/postgresql/{{ pgsql_release }}/main"
 pgsql_config_file: "{{ pgsql_config_directory }}/postgresql.conf"
 
 # pgsql_hba_entries:
-
-# pgsql_databases:
-
-# pgsql_users:
 
 #------------------------------------------------------------------------------
 # FILE LOCATIONS

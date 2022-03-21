@@ -21,20 +21,20 @@
   become: true
   with_items:
     - "autovacuum.conf"
-    - "compatibility.conf"
-    - "custom.conf"
-    - "files.conf"
-    - "logging.conf"
-    - "query_tuning.conf"
-    - "resources.conf"
-    - "wal.conf"
-    - "client_connection.conf"
-    - "connections.conf"
+    - "client_connection_defaults.conf"
+    - "connections_authentication.conf"
+    - "customized_options.conf"
     - "error_handling.conf"
+    - "files_locations.conf"
     - "lock_management.conf"
-    - "process.conf"
+    - "process_title.conf"
+    - "query_tuning.conf"
     - "replication.conf"
+    - "reporting_logging.conf"
+    - "resource_usage.conf"
     - "statistics.conf"
+    - "version_platform_compatibility.conf"
+    - "wal.conf"
   tags:
     - role_install
     - role_configure

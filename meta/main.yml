@@ -1,8 +1,8 @@
 galaxy_info:
   author: Yuri Corona Lopes
   description: This role install and configure a PostgreSQL Citus Cluster
-  role_name: postgresql_citus
-  namespace: anothertrial
+  role_name: citus
+  namespace: yuriclopes
   # company: your company (optional)
 
   # If the issue tracker for your role is not on github, uncomment the
@@ -16,7 +16,7 @@ galaxy_info:
   # - GPL-3.0-only
   # - Apache-2.0
   # - CC-BY-4.0
-  license: license (GPL-2.0-or-later, MIT, etc)
+  license: MIT
 
   min_ansible_version: 2.1
 

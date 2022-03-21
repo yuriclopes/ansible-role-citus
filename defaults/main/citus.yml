@@ -1,1 +1,2 @@
 citus_release: 10.2
+pgsql_release: 14

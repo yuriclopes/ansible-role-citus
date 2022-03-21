@@ -4,4 +4,4 @@
   tasks:
     - name: "Include postgresql-citus"
       include_role:
-        name: "postgresql-citus"
+        name: "yuriclopes.citus"
