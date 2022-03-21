@@ -1,6 +1,7 @@
 ---
-name: CI
-'on':
+name: Molecule
+
+on:
   pull_request:
   push:
     branches:
