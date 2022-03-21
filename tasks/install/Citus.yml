@@ -1,7 +1,7 @@
 ---
-- name: Install Citus Postgresql package
+- name: Install Citus PostgreSQL package
   package:
-    name: "postgresql-{{ postgresql_release }}-citus-{{ citus_release }}"
+    name: "postgresql-{{ pgsql_release }}-citus-{{ citus_release }}"
     state: present
   become: yes
   register: install_citus_apt
@@ -10,3 +10,6 @@
   retries: 12
   tags:
     - role_install
+  notify:
+    - Enable postgresql service
+    - Start postgresql service

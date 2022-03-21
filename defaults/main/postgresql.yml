@@ -3,9 +3,6 @@ pgsql_release: 14
 pgsql_config_directory: "/etc/postgresql/{{ pgsql_release }}/main"
 pgsql_config_file: "{{ pgsql_config_directory }}/postgresql.conf"
 
-# pgsql_locales:
-#   - "en_US.UTF-8"
-
 # pgsql_hba_entries:
 
 # pgsql_databases:
@@ -30,7 +27,7 @@ external_pid_file: "/var/run/postgresql/{{ pgsql_release }}-main.pid"
 listen_addresses: '*' 
 port: 5432
 max_connections: 100
-# superuser_reserved_connections: 3
+superuser_reserved_connections: 3
 unix_socket_directories: '/var/run/postgresql'
 # unix_socket_group: ''
 # unix_socket_permissions: 0777
@@ -412,9 +409,9 @@ stats_temp_directory: "/var/run/postgresql/{{ pgsql_release }}-main.pg_stat_tmp"
 
 # - Locale and Formatting -
 
-datestyle: 'iso, mdy'
+datestyle: 'iso, ymd'
 # intervalstyle: 'postgres'
-timezone: 'US/Eastern'
+timezone: 'GMT'
 # timezone_abbreviations: 'Default'
 # extra_float_digits: 1
 # client_encoding: sql_ascii

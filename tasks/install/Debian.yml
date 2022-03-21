@@ -38,3 +38,15 @@
   with_items: "{{ debian_apt_repos }}"
   tags:
     - role_install
+
+- name: Ensure a locale exists
+  community.general.locale_gen:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ lc_messages }}"
+    - "{{ lc_monetary }}"
+    - "{{ lc_numeric }}"
+    - "{{ lc_time }}"
+  tags:
+    - role_install

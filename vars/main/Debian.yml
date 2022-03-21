@@ -4,6 +4,12 @@ debian_apt_packages:
   - ca-certificates
   - debian-archive-keyring
   - apt-transport-https
+  - systemd
+  - procps
+  - net-tools
+  - telnet
+  - python3-pip
+  - locales
 
 debian_apt_keys:
   - https://www.postgresql.org/media/keys/ACCC4CF8.asc
