@@ -58,7 +58,9 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install -r molecule/requirements.txt
+        run: |
+          pip3 install -r molecule/requirements.txt
+          pip3 install -r requirements.txt
 
       - name: Run Molecule tests.
         run: molecule test

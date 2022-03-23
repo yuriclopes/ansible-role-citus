@@ -1,2 +1,3 @@
 yamllint>=1.26.0
 ansible-lint>=6.0.0
+netaddr>=0.7.0
