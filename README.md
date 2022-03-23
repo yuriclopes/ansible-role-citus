@@ -1,6 +1,6 @@
 # Ansible Role: Citus
 
-[![CI](https://github.com/yuriclopes/ansible-role-citus/workflows/CI/badge.svg?event=push)](https://github.com/yuriclopes/ansible-role-citus/actions?query=workflow%3ACI)
+[![Molecule](https://github.com/yuriclopes/ansible-role-citus/actions/workflows/ci.yml/badge.svg)](https://github.com/yuriclopes/ansible-role-citus/actions/workflows/ci.yml)
 
 Installs and configures Citus PostgreSQL Cluster server on RHEL/CentOS or Debian/Ubuntu servers.
 
