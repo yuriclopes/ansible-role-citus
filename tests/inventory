@@ -1,2 +1,14 @@
-localhost
-
+all:
+  hosts:
+    citus-coordinator-01:
+      ansible_host: 192.168.56.3
+    citus-worker-01:
+      ansible_host: 192.168.56.4
+  children:
+    coordinator:
+      hosts:
+        citus-coordinator-01:
+    worker:
+      hosts:
+        citus-worker-01:
+   

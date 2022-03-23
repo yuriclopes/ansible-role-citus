@@ -6,7 +6,6 @@
     owner: postgres
     group: postgres
     mode: 0644
-  become: true
   tags:
     - role_install
     - role_configure
@@ -18,7 +17,6 @@
     owner: postgres
     group: postgres
     mode: 0644
-  become: true
   with_items:
     - "autovacuum.conf"
     - "client_connection_defaults.conf"
@@ -46,7 +44,6 @@
     owner: postgres
     group: postgres
     mode: 0644
-  become: true
   tags:
     - role_install
     - role_configure

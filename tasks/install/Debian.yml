@@ -3,7 +3,6 @@
   ansible.builtin.package:
     name: "{{ item }}"
     state: present
-  become: yes
   register: install_apt_packages
   until: install_apt_packages is success
   delay: 5
@@ -16,7 +15,6 @@
   ansible.builtin.apt_key:
     url: "{{ item }}"
     state: present
-  become: yes
   register: install_apt_keys
   until: install_apt_keys is success
   delay: 5
@@ -30,7 +28,6 @@
     repo: "{{ item }}"
     state: present
     update_cache: true
-  become: yes
   register: install_apt_repos
   until: install_apt_repos is success
   delay: 5
@@ -43,7 +40,6 @@
   community.general.locale_gen:
     name: "{{ item }}"
     state: present
-  become: yes
   with_items:
     - "{{ lc_messages }}"
     - "{{ lc_monetary }}"

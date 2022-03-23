@@ -2,28 +2,23 @@
 - name: Daemon reload
   ansible.builtin.systemd:
     daemon_reload: yes
-  become: true
 
 - name: Enable postgresql service
   ansible.builtin.systemd:
     name: postgresql.service
     enabled: yes
-  become: true
 
 - name: Start postgresql service
   ansible.builtin.systemd:
     name: postgresql.service
     state: started
-  become: true
 
 - name: Stop postgresql service
   ansible.builtin.systemd:
     name: postgresql.service
     state: stopped
-  become: true
 
 - name: Restart postgresql service
   ansible.builtin.systemd:
     name: postgresql.service
     state: restarted
-  become: true

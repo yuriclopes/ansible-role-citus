@@ -1,2 +1,2 @@
-default_pip_packages:
-  - psycopg2-binary
+postgresql_pip_packages:
+  - psycopg2

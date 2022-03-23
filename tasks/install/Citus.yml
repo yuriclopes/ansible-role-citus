@@ -3,7 +3,6 @@
   ansible.builtin.package:
     name: "postgresql-{{ pgsql_release }}-citus-{{ citus_release }}"
     state: present
-  become: yes
   register: install_citus_apt
   until: install_citus_apt is success
   delay: 5
@@ -14,11 +13,17 @@
     - Enable postgresql service
     - Start postgresql service
 
-- name: Install required pip packages
+- name: Install wheel
+  ansible.builtin.pip:
+    name: wheel
+    state: present
+  tags:
+    - role_install
+
+- name: Install postgresql required pip packages
   ansible.builtin.pip:
     name: "{{ item }}"
     state: present
-  become: yes
-  with_items: "{{ default_pip_packages }}"
+  with_items: "{{ postgresql_pip_packages }}"
   tags:
     - role_install
