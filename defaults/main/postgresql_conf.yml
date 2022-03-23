@@ -80,7 +80,7 @@ shared_buffers: 128MB
 # logical_decoding_work_mem: 64MB
 # max_stack_depth: 2MB
 # shared_memory_type: mmap
-dynamic_shared_memory_type: posix	
+dynamic_shared_memory_type: posix
 # min_dynamic_shared_memory: 0MB
 
 # - Disk -

@@ -1,6 +1,6 @@
 ---
 - name: Install Citus PostgreSQL package
-  package:
+  ansible.builtin.package:
     name: "postgresql-{{ pgsql_release }}-citus-{{ citus_release }}"
     state: present
   become: yes
@@ -15,7 +15,7 @@
     - Start postgresql service
 
 - name: Install required pip packages
-  pip:
+  ansible.builtin.pip:
     name: "{{ item }}"
     state: present
   become: yes

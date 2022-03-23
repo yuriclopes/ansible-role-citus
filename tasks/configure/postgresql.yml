@@ -1,6 +1,6 @@
 ---
 - name: Create postgresql.conf file
-  template:
+  ansible.builtin.template:
     src: "postgresql.conf.j2"
     dest: "{{ pgsql_config_file }}"
     owner: postgres
@@ -12,7 +12,7 @@
     - role_configure
 
 - name: Create postgresql.conf.d files
-  template:
+  ansible.builtin.template:
     src: "postgresql.conf.d/{{ item }}.j2"
     dest: "{{ pgsql_config_directory }}/conf.d/{{ item }}"
     owner: postgres
@@ -40,7 +40,7 @@
     - role_configure
 
 - name: Create pg_hba.conf file
-  template:
+  ansible.builtin.template:
     src: "pg_hba.conf.j2"
     dest: "{{ hba_file }}"
     owner: postgres
@@ -52,10 +52,10 @@
     - role_configure
 
 - name: Flush handlers to create PostgreSQL Objects
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Alter postgres password
-  postgresql_query:
+  community.postgresql.postgresql_query:
     query: "ALTER ROLE postgres WITH PASSWORD '{{ postgres_password }}';"
     db: postgres
     login_host: "{{ item.login_host | default('localhost') }}"
