@@ -1,10 +1,10 @@
----
+--- 
 - name: Install Citus PostgreSQL package
   ansible.builtin.package:
-    name: "postgresql-{{ pgsql_release }}-citus-{{ citus_release }}"
+    name: "{{ citus_package_name }}"
     state: present
-  register: install_citus_apt
-  until: install_citus_apt is success
+  register: install_citus
+  until: install_citus is success
   delay: 5
   retries: 12
   tags:
