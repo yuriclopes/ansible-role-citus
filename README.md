@@ -5,8 +5,13 @@
 Installs and configures Citus PostgreSQL Cluster server on RHEL/CentOS or Debian/Ubuntu servers.
 
 ## Requirements (Debian)
-### APT Packages on target hosts
+
+### APT Packages on Debian target hosts
 - iproute2
+- python3
+
+### RPM Packages on RHEL target hosts
+- iproute
 - python3
 
 The inventory should be split in 2 Groups:

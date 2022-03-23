@@ -5,20 +5,20 @@
 
 - name: Enable postgresql service
   ansible.builtin.systemd:
-    name: postgresql.service
+    name: "{{ pgsql_systemd_service }}"
     enabled: yes
 
 - name: Start postgresql service
   ansible.builtin.systemd:
-    name: postgresql.service
+    name: "{{ pgsql_systemd_service }}"
     state: started
 
 - name: Stop postgresql service
   ansible.builtin.systemd:
-    name: postgresql.service
+    name: "{{ pgsql_systemd_service }}"
     state: stopped
 
 - name: Restart postgresql service
   ansible.builtin.systemd:
-    name: postgresql.service
+    name: "{{ pgsql_systemd_service }}"
     state: restarted

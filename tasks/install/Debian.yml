@@ -47,3 +47,17 @@
     - "{{ lc_time }}"
   tags:
     - role_install
+
+- name: Install Citus PostgreSQL package
+  ansible.builtin.package:
+    name: "{{ citus_package_name }}"
+    state: present
+  register: install_citus
+  until: install_citus is success
+  delay: 5
+  retries: 12
+  tags:
+    - role_install
+  notify:
+    - Enable postgresql service
+    - Start postgresql service

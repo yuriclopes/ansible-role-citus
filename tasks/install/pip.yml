@@ -1,0 +1,27 @@
+--- 
+- name: Install wheel
+  ansible.builtin.pip:
+    name: wheel
+    state: present
+  tags:
+    - role_install
+
+- name: Install postgresql required pip packages
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ postgresql_pip_packages }}"
+  tags:
+    - role_install
+  when: ansible_version == 'Debian'
+
+- name: Install postgresql required pip packages
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ postgresql_pip_packages }}"
+  tags:
+    - role_install
+  environment:
+    PATH: "$PATH:/usr/pgsql-{{ pgsql_release }}/bin/"
+  when: ansible_version == 'RedHat'

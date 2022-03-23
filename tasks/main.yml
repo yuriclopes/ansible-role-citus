@@ -15,8 +15,8 @@
   tags:
     - role_install
 
-- name: Include Citus specific tasks
-  include_tasks: "install/Citus.yml"
+- name: Include PIP specific tasks
+  include_tasks: "install/pip.yml"
   tags:
     - role_install
 
