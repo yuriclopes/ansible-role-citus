@@ -40,7 +40,7 @@
     coordinator_login_port: "{{ port }}"
     coordinator_login_user: "{{ item.login_user | default('postgres') }}"
     coordinator_login_password: "{{ item.login_password | default(postgres_password) }}"
-    worker_node_host: "{{ (node_dns is defined) | ternary(node_dns, ansible_all_ipv4_addresses | ipaddr('private') | first) }}"
+    worker_node_host: "{{ (worker_dns is defined) | ternary(worker_dns, ansible_all_ipv4_addresses | ipaddr('private') | first) }}"
     worker_node_port: "{{ port }}"
     database: "{{ item.name }}"
   become: true
