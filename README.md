@@ -27,7 +27,7 @@ Additional variables listed below. Available variables are listed in defaults fo
 | Variable | Description | Required | Type | Default |
 |----------|-------------|----------|------|---------|
 |`postgres_password` | Password to be setted to postgres user | `yes` | `str` | null |
-|`node_dns` | Worker Node DNS Recordset to be used instead ip | `no` | `str` | Node Private IP |
+|`worker_dns` | Worker Node DNS Recordset to be used instead ip | `no` | `str` | Node Private IP |
 |`coordinator_dns` | Coordinator Node DNS Recordset to be used instead ip | `no` | `str` | Node Private IP |
 
 ## Dependencies
