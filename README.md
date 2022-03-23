@@ -32,7 +32,8 @@ Additional variables listed below. Available variables are listed in defaults fo
 
 ## Dependencies
 
-None.
+### PIP Packages (requirements.txt)
+- netaddr>=0.7.0
 
 ## Example Playbook
 
