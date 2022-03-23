@@ -54,18 +54,30 @@
 - name: Flush handlers to create PostgreSQL Objects
   ansible.builtin.meta: flush_handlers
 
+- name: PostgreSQL test TCP postgres connection
+  community.postgresql.postgresql_ping:
+    db: postgres
+    login_host: localhost
+    login_user: postgres
+    login_password: "{{ postgres_password }}"
+  register: postgres_ping
+  tags:
+    - role_install
+    - role_configure
+
 - name: Alter postgres password
   community.postgresql.postgresql_query:
     query: "ALTER ROLE postgres WITH PASSWORD '{{ postgres_password }}';"
     db: postgres
-    login_host: "{{ item.login_host | default('localhost') }}"
-    login_password: "{{ item.login_password | default(omit) }}"
-    login_user: "{{ item.login_user | default('postgres') }}"
+    login_host: localhost
+    login_user: postgres
     login_unix_socket: "{{ unix_socket_directories }}"
-    port: "{{ item.port | default(omit) }}"
-  with_items: "{{ databases }}"
+    port: "{{ port }}"
   become: true
   become_user: postgres
   vars:
     ansible_ssh_pipelining: true
-  when: postgres_password is defined
+  when: not postgres_ping.is_available
+  tags:
+    - role_install
+    - role_configure
