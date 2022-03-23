@@ -40,5 +40,6 @@ provisioner:
             privileges: CONNECT/CREATE
         databases:
           - name: my_db
+        postgres_password: 123changeme
 verifier:
   name: ansible
