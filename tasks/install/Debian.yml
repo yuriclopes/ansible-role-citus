@@ -43,6 +43,7 @@
   community.general.locale_gen:
     name: "{{ item }}"
     state: present
+  become: yes
   with_items:
     - "{{ lc_messages }}"
     - "{{ lc_monetary }}"

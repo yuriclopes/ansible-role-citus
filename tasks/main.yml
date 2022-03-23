@@ -1,4 +1,8 @@
 ---
+- name: Get coordinator node host
+  set_fact:
+    coordinator_host: "{{ (coordinator_dns is defined) | ternary(coordinator_dns, hostvars[groups['coordinator'][0]].ansible_all_ipv4_addresses | ipaddr('private') | first ) }}"
+
 - name: Include OS specific tasks
   include_tasks: "install/{{ ansible_os_family }}.yml"
   tags:
@@ -14,3 +18,17 @@
   tags:
     - role_install
     - role_configure
+
+- name: Include PostgreSQL Databases tasks
+  include_tasks: "configure/databases.yml"
+  tags:
+    - role_install
+    - role_configure
+    - role_users
+
+- name: Include PostgreSQL Users tasks
+  include_tasks: "configure/users.yml"
+  tags:
+    - role_install
+    - role_configure
+    - role_users

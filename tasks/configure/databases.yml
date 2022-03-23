@@ -1,0 +1,51 @@
+---
+- name: Create defined PostgreSQL Databases.
+  postgresql_db:
+    name: "{{ item.name }}"
+    lc_collate: "{{ item.lc_collate | default('en_US.UTF-8') }}"
+    lc_ctype: "{{ item.lc_ctype | default('en_US.UTF-8') }}"
+    encoding: "{{ item.encoding | default('UTF-8') }}"
+    template: "{{ item.template | default('template0') }}"
+    login_host: "{{ item.login_host | default('localhost') }}"
+    login_password: "{{ item.login_password | default(omit) }}"
+    login_user: "{{ item.login_user | default('postgres') }}"
+    login_unix_socket: "{{ unix_socket_directories }}"
+    port: "{{ item.port | default(omit) }}"
+    owner: "{{ item.owner | default('postgres') }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ databases }}"
+  become: true
+  become_user: postgres
+  vars:
+    ansible_ssh_pipelining: true
+
+- name: Install Citus extension to databases
+  community.postgresql.postgresql_ext:
+    name: citus
+    db: "{{ item.name }}"
+    state: present
+    login_host: "{{ item.login_host | default('localhost') }}"
+    login_password: "{{ item.login_password | default(omit) }}"
+    login_user: "{{ item.login_user | default('postgres') }}"
+    login_unix_socket: "{{ unix_socket_directories }}"
+  with_items: "{{ databases }}"
+  become: true
+  become_user: postgres
+  vars:
+    ansible_ssh_pipelining: true
+
+- name: Join nodes to databases
+  citus_node:
+    coordinator_login_host: "{{ coordinator_host }}"
+    coordinator_login_port: "{{ port }}"
+    coordinator_login_user: "{{ item.login_user | default('postgres') }}"
+    coordinator_login_password: "{{ item.login_password | default(postgres_password) }}"
+    worker_node_host: "{{ (node_dns is defined) | ternary(node_dns, ansible_all_ipv4_addresses | ipaddr('private') | first) }}"
+    worker_node_port: "{{ port }}"
+    database: "{{ item.name }}"
+  become: true
+  become_user: postgres
+  with_items: "{{ databases }}"
+  when: groups['worker'] is defined and inventory_hostname in groups['worker']
+  vars:
+    ansible_ssh_pipelining: true

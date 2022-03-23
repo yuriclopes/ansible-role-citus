@@ -1,0 +1,24 @@
+---
+- name: Create defined PostgreSQL users
+  community.postgresql.postgresql_user:
+    db: "{{ item.database }}"
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+    priv: "{{ item.privileges }}"
+    expires: "{{ item.expires | default('infinity') }}"
+    comment: "{{ item.comment | default('Created by Ansible Role') }}"
+    groups: "{{ item.groups | default([]) }}"
+    login_host: "{{ item.login_host | default('localhost') }}"
+    login_password: "{{ item.login_password | default(omit) }}"
+    login_user: "{{ item.login_user | default('postgres') }}"
+    login_unix_socket: "{{ unix_socket_directories }}"
+  with_items: "{{ users }}"
+  no_log: yes
+  become: true
+  become_user: postgres
+  tags:
+    - role_install
+    - role_configure
+    - role_users
+  vars:
+    ansible_ssh_pipelining: true

@@ -1,2 +1,21 @@
+# Set Citus version
 citus_release: 10.2
+# Set PostgreSQL Version 
 pgsql_release: 14
+
+# Set postgres password. Use some vault, please ;)
+# postgres_password:
+
+# List of Roles to be created
+users: []
+  # - name: my_application
+  #   password: my_application_pass
+  #   comment: Application User
+  #   expires: infinity
+  #   groups: []
+  #   privileges: CONNECT/CREATE
+
+# List of databases to be create and added to Citus nodes.
+databases: []
+  # - name: appdb
+  #   owner: postgres

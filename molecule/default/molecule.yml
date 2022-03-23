@@ -4,16 +4,41 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: debian-citus-coordinator-01
+  - name: instance-coord
     image: "${MOLECULE_IMAGE:-yuriclopes/debian-molecule-test:11-slim}"
+    command: "${IMAGE_COMMAND:-/sbin/init}"
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
     pre_build_image: true
+    groups:
+      - citus
+      - coordinator
+  - name: instance-worker
+    image: "${MOLECULE_IMAGE:-yuriclopes/debian-molecule-test:11-slim}"
+    command: "${IMAGE_COMMAND:-/sbin/init}"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+    groups:
+      - citus
+      - worker
 provisioner:
   name: ansible
-  group_vars:
-    all:
-      ansible_user: ansible
+  inventory:
+    group_vars:
+      citus:
+        ansible_user: ansible
+        users:
+          - name: my_application
+            database: my_db
+            password: my_application_pass
+            comment: Application User
+            expires: infinity
+            groups: []
+            privileges: CONNECT/CREATE
+        databases:
+          - name: my_db
 verifier:
   name: ansible

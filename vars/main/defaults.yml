@@ -1,0 +1,2 @@
+default_pip_packages:
+  - psycopg2-binary

@@ -1,7 +1,10 @@
+# Set postgresql configuration pah
 pgsql_config_directory: "/etc/postgresql/{{ pgsql_release }}/main"
+
+# set postgresql configuration file
 pgsql_config_file: "{{ pgsql_config_directory }}/postgresql.conf"
 
-# pgsql_hba_entries:
+# Variables following the postgresql.conf naming pattern.
 
 #------------------------------------------------------------------------------
 # FILE LOCATIONS

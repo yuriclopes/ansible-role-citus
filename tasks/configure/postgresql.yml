@@ -38,3 +38,34 @@
   tags:
     - role_install
     - role_configure
+
+- name: Create pg_hba.conf file
+  template:
+    src: "pg_hba.conf.j2"
+    dest: "{{ hba_file }}"
+    owner: postgres
+    group: postgres
+    mode: 0644
+  become: true
+  tags:
+    - role_install
+    - role_configure
+
+- name: Flush handlers to create PostgreSQL Objects
+  meta: flush_handlers
+
+- name: Alter postgres password
+  postgresql_query:
+    query: "ALTER ROLE postgres WITH PASSWORD '{{ postgres_password }}';"
+    db: postgres
+    login_host: "{{ item.login_host | default('localhost') }}"
+    login_password: "{{ item.login_password | default(omit) }}"
+    login_user: "{{ item.login_user | default('postgres') }}"
+    login_unix_socket: "{{ unix_socket_directories }}"
+    port: "{{ item.port | default(omit) }}"
+  with_items: "{{ databases }}"
+  become: true
+  become_user: postgres
+  vars:
+    ansible_ssh_pipelining: true
+  when: postgres_password is defined

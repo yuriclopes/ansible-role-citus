@@ -1,3 +1,4 @@
+# Default Debian apt packages
 debian_apt_packages:
   - gnupg
   - curl
@@ -5,9 +6,6 @@ debian_apt_packages:
   - debian-archive-keyring
   - apt-transport-https
   - systemd
-  - procps
-  - net-tools
-  - telnet
   - python3-pip
   - locales
 

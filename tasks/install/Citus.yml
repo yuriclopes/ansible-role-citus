@@ -13,3 +13,12 @@
   notify:
     - Enable postgresql service
     - Start postgresql service
+
+- name: Install required pip packages
+  pip:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items: "{{ default_pip_packages }}"
+  tags:
+    - role_install
