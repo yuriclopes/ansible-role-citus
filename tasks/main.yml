@@ -1,4 +1,11 @@
 ---
+- name: Load a variable file based on the OS type
+  include_vars: 
+    file: "{{ item }}"
+  with_items:
+    - "{{ ansible_os_family }}.yml"
+    - default.yml
+
 - name: Get coordinator node host
   ansible.builtin.set_fact:
     coordinator_host: "{{ (coordinator_dns is defined) | ternary(coordinator_dns, hostvars[groups['coordinator'][0]].ansible_all_ipv4_addresses | ipaddr('private') | first ) }}"

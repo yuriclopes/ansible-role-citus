@@ -7,7 +7,7 @@
   until: install_apt_packages is success
   delay: 5
   retries: 12
-  with_items: "{{ debian_apt_packages }}"
+  with_items: "{{ packages }}"
   tags:
     - role_install
 
@@ -19,7 +19,7 @@
   until: install_apt_keys is success
   delay: 5
   retries: 12
-  with_items: "{{ debian_apt_keys }}"
+  with_items: "{{ apt_keys }}"
   tags:
     - role_install
 
@@ -32,7 +32,7 @@
   until: install_apt_repos is success
   delay: 5
   retries: 12
-  with_items: "{{ debian_apt_repos }}"
+  with_items: "{{ apt_repos }}"
   tags:
     - role_install
 
