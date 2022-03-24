@@ -7,8 +7,8 @@
     group: postgres
     mode: 0644
   tags:
-    - role_install
-    - role_configure
+    - install
+    - configure
 
 - name: Create postgresql.conf.d files
   ansible.builtin.template:
@@ -34,8 +34,8 @@
     - "version_platform_compatibility.conf"
     - "wal.conf"
   tags:
-    - role_install
-    - role_configure
+    - install
+    - configure
 
 - name: Create pg_hba.conf file
   ansible.builtin.template:
@@ -45,8 +45,8 @@
     group: postgres
     mode: 0644
   tags:
-    - role_install
-    - role_configure
+    - install
+    - configure
 
 - name: Flush handlers to create PostgreSQL Objects
   ansible.builtin.meta: flush_handlers
@@ -58,11 +58,11 @@
     login_user: postgres
     login_password: "{{ postgres_password }}"
   register: postgres_ping
-  tags:
-    - role_install
-    - role_configure
   vars:
     ansible_python_interpreter: /usr/bin/python3
+  tags:
+    - install
+    - configure
 
 - name: Alter postgres password
   community.postgresql.postgresql_query:
@@ -79,5 +79,5 @@
     ansible_python_interpreter: /usr/bin/python3
   when: not postgres_ping.is_available
   tags:
-    - role_install
-    - role_configure
+    - install
+    - configure

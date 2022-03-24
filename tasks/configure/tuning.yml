@@ -1,0 +1,52 @@
+---
+- name: Apply sysctl_params
+  ansible.builtin.sysctl:
+    name: '{{ item.key }}'
+    value: '{{ item.value }}'
+    sysctl_set: yes
+    state: present
+    reload: yes
+    ignoreerrors: yes
+  with_dict: '{{ sysctl_params }}'
+  become: true
+  tags:
+    - install
+    - configure
+
+- name: Create disable-thp.service
+  ansible.builtin.template:
+    src: "disable-thp.service.j2"
+    dest: "/lib/systemd/system/disable-thp.service"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Daemon reload
+    - Enable disable-thp service
+    - Start disable-thp service
+  tags:
+    - install
+    - configure
+
+- name: Check if THP Enabled is disabled
+  ansible.builtin.shell: cat {{ thp_sys_path }}/enabled
+  register: thp_enabled_status
+  changed_when: false
+  tags:
+    - install
+    - configure
+
+- name: Check if THP Defrag is disabled
+  ansible.builtin.shell: cat {{ thp_sys_path }}/defrag
+  register: thp_defrag_status
+  changed_when: false
+  tags:
+    - install
+    - configure
+
+- name: Disable THP (Live change)
+  ansible.builtin.shell: "echo never > {{ thp_sys_path }}/enabled && echo never > {{ thp_sys_path }}/defrag"
+  when: ( not thp_enabled_status | regex_search("[never]") ) or ( not thp_defrag_status | regex_search("[never]") )
+  tags:
+    - install
+    - configure

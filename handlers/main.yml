@@ -22,3 +22,13 @@
   ansible.builtin.systemd:
     name: "{{ pgsql_systemd_service }}"
     state: restarted
+
+- name: Enable disable-thp service
+  ansible.builtin.systemd:
+    name: "disable-thp.service"
+    enabled: yes
+
+- name: Start disable-thp service
+  ansible.builtin.systemd:
+    name: "disable-thp.service"
+    state: started
