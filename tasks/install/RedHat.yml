@@ -1,0 +1,110 @@
+---
+- name: Install additional packages on Centos7
+  ansible.builtin.package:
+    name:
+      - epel-release
+      - centos-release-scl
+    state: present
+  when: 
+    - ansible_distribution_major_version == "7"
+
+- name: Import postgresql GPG KEY
+  ansible.builtin.rpm_key:
+    state: present
+    key: "https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-{{ pgsql_release }}"
+
+- name: Install postgresql yum repository
+  ansible.builtin.package:
+    name: "https://download.postgresql.org/pub/repos/yum/reporpms/EL-{{ ansible_distribution_major_version }}-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
+    state: present
+
+- name: Check if built-in PostgreSQL modules are enabled
+  ansible.builtin.shell: "dnf -qy module list postgresql --enabled"
+  register: dnf_pgsql_module
+  changed_when: False
+  failed_when: False
+
+- name: Disable the built-in PostgreSQL module
+  ansible.builtin.shell: "dnf -qy module disable postgresql"
+  when: 
+    - ansible_distribution_major_version == "8"
+    - dnf_pgsql_module.stderr | replace(":","") != "Error No matching Modules to list"
+
+- name: Install citus yum repository
+  ansible.builtin.yum_repository:
+    name: citusdata_community
+    state: present
+    baseurl: "https://packagecloud.io/citusdata/community/el/{{ ansible_distribution_major_version }}/$basearch"
+    description: citusdata_community
+    repo_gpgcheck: false
+    gpgcheck: false
+    enabled: true
+    gpgkey: https://packagecloud.io/citusdata/community/gpgkey
+    sslverify: true
+    sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+    metadata_expire: 300
+
+- name: Install Citus PostgreSQL package
+  ansible.builtin.package:
+    name: "{{ citus_package_name }}"
+    state: present
+  register: install_citus
+  until: install_citus is success
+  delay: 5
+  retries: 12
+  tags:
+    - role_install
+  notify:
+    - Enable postgresql service
+    - Start postgresql service
+
+- name: Check if "{{ pgsql_data_directory }}" is empty
+  ansible.builtin.find:
+    paths: "{{ pgsql_data_directory }}"
+  register: pgsql_data_files
+
+- name: Initialize PostgreSQL Database
+  ansible.builtin.shell: "/usr/pgsql-14/bin/postgresql-14-setup initdb"
+  environment:
+    PGDATA: "{{ pgsql_data_directory }}"
+  when: pgsql_data_files.matched == 0
+
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  register: install_packages
+  until: install_packages is success
+  delay: 5
+  retries: 12
+  with_items: "{{ packages }}"
+  tags:
+    - role_install
+
+- name: Create conf.d directory
+  ansible.builtin.file:
+    path: "{{ pgsql_data_directory }}/conf.d"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: 0700
+
+- name: Create "{{ unix_socket_directories }}" directory
+  ansible.builtin.file:
+    path: "{{ unix_socket_directories }}"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: 0700
+
+- name: Install postgresql required pip packages
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ postgresql_pip_packages }}"
+  tags:
+    - role_install
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/usr/pgsql-{{ pgsql_release }}/bin/"
+  vars:
+    ansible_python_interpreter: /usr/bin/python3

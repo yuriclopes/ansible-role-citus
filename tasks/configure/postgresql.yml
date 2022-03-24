@@ -61,6 +61,8 @@
   tags:
     - role_install
     - role_configure
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
 
 - name: Alter postgres password
   community.postgresql.postgresql_query:
@@ -74,6 +76,7 @@
   become_user: postgres
   vars:
     ansible_ssh_pipelining: true
+    ansible_python_interpreter: /usr/bin/python3
   when: not postgres_ping.is_available
   tags:
     - role_install

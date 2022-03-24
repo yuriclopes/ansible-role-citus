@@ -1,16 +1,10 @@
-# Set postgresql configuration pah
-pgsql_config_directory: "/etc/postgresql/{{ pgsql_release }}/main"
-
-# set postgresql configuration file
-pgsql_config_file: "{{ pgsql_config_directory }}/postgresql.conf"
-
 # Variables following the postgresql.conf naming pattern.
 
 #------------------------------------------------------------------------------
 # FILE LOCATIONS
 #------------------------------------------------------------------------------
 
-data_directory: "/var/lib/postgresql/{{ pgsql_release }}/main"
+data_directory: "{{ pgsql_data_directory }}"
 hba_file: "{{ pgsql_config_directory }}/pg_hba.conf"
 ident_file: "{{ pgsql_config_directory }}/pg_ident.conf"
 external_pid_file: "/var/run/postgresql/{{ pgsql_release }}-main.pid"
@@ -47,12 +41,12 @@ unix_socket_directories: '/var/run/postgresql'
 
 # - SSL -
 
-ssl: on
+ssl: off
 #ssl_ca_file: ''
-ssl_cert_file: '/etc/ssl/certs/ssl-cert-snakeoil.pem'
+#ssl_cert_file: '/etc/ssl/certs/ssl-cert-snakeoil.pem'
 #ssl_crl_file: ''
 #ssl_crl_dir: ''
-ssl_key_file: '/etc/ssl/private/ssl-cert-snakeoil.key'
+#ssl_key_file: '/etc/ssl/private/ssl-cert-snakeoil.key'
 #ssl_ciphers: 'HIGH:MEDIUM:+3DES:!aNULL'
 #ssl_prefer_server_ciphers: on
 #ssl_ecdh_curve: 'prime256v1'

@@ -1,5 +1,7 @@
 # Default Debian apt packages
-debian_apt_packages:
+citus_package_name: "postgresql-{{ pgsql_release }}-citus-{{ citus_release }}"
+
+packages:
   - gnupg
   - curl
   - ca-certificates
@@ -14,11 +16,23 @@ debian_apt_packages:
   - python3-setuptools
   - libpq-dev
 
-debian_apt_keys:
+apt_keys:
   - https://www.postgresql.org/media/keys/ACCC4CF8.asc
   - https://repos.citusdata.com/community/gpgkey
 
-debian_apt_repos:
+apt_repos:
   - "deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release | lower }}-pgdg main"
   - "deb https://repos.citusdata.com/community/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release | lower }} main"
   - "deb-src https://repos.citusdata.com/community/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release | lower }} main"
+
+# Set postgresql configuration pah
+pgsql_config_directory: "/etc/postgresql/{{ pgsql_release }}/main"
+
+# set postgresql configuration file
+pgsql_config_file: "{{ pgsql_config_directory }}/postgresql.conf"
+
+# Set postgresql data dir
+pgsql_data_directory: "/var/lib/postgresql/{{ pgsql_release }}/main"
+
+# Set postgresql systemd service
+pgsql_systemd_service: postgresql.service

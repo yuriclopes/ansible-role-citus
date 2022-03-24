@@ -7,7 +7,7 @@
   until: install_apt_packages is success
   delay: 5
   retries: 12
-  with_items: "{{ debian_apt_packages }}"
+  with_items: "{{ packages }}"
   tags:
     - role_install
 
@@ -19,7 +19,7 @@
   until: install_apt_keys is success
   delay: 5
   retries: 12
-  with_items: "{{ debian_apt_keys }}"
+  with_items: "{{ apt_keys }}"
   tags:
     - role_install
 
@@ -32,7 +32,7 @@
   until: install_apt_repos is success
   delay: 5
   retries: 12
-  with_items: "{{ debian_apt_repos }}"
+  with_items: "{{ apt_repos }}"
   tags:
     - role_install
 
@@ -45,5 +45,34 @@
     - "{{ lc_monetary }}"
     - "{{ lc_numeric }}"
     - "{{ lc_time }}"
+  tags:
+    - role_install
+
+- name: Install Citus PostgreSQL package
+  ansible.builtin.package:
+    name: "{{ citus_package_name }}"
+    state: present
+  register: install_citus
+  until: install_citus is success
+  delay: 5
+  retries: 12
+  tags:
+    - role_install
+  notify:
+    - Enable postgresql service
+    - Start postgresql service
+
+- name: Install wheel
+  ansible.builtin.pip:
+    name: wheel
+    state: present
+  tags:
+    - role_install
+
+- name: Install postgresql required pip packages
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ postgresql_pip_packages }}"
   tags:
     - role_install

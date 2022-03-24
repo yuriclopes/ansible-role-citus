@@ -1,0 +1,24 @@
+# Default Debian apt packages
+citus_package_name: "citus{{ citus_release | replace('.','') }}_{{ pgsql_release }}"
+
+packages:
+  - systemd
+  - gcc
+  - python3
+  - python3-pip
+  - python3-devel
+  - python3-setuptools
+  - python3-wheel.noarch
+  - "postgresql{{ pgsql_release }}-devel"
+
+# Set postgresql configuration pah
+pgsql_config_directory: "/var/lib/pgsql/{{ pgsql_release }}/data"
+
+# set postgresql configuration file
+pgsql_config_file: "{{ pgsql_config_directory }}/postgresql.conf"
+
+# Set postgresql data dir
+pgsql_data_directory: "{{ pgsql_config_directory }}"
+
+# Set postgresql systemd service
+pgsql_systemd_service: postgresql-{{ pgsql_release }}
