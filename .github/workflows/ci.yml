@@ -41,7 +41,7 @@ jobs:
     strategy:
       matrix:
         images:
-          # - yuriclopes/centos-molecule-test:7
+          - yuriclopes/centos-molecule-test:7
           - yuriclopes/centos-molecule-test:8
           - yuriclopes/debian-molecule-test:10-slim
           - yuriclopes/debian-molecule-test:11-slim

@@ -18,6 +18,7 @@
   become_user: postgres
   vars:
     ansible_ssh_pipelining: true
+    ansible_python_interpreter: /usr/bin/python3
 
 - name: Install Citus extension to databases
   community.postgresql.postgresql_ext:
@@ -33,6 +34,7 @@
   become_user: postgres
   vars:
     ansible_ssh_pipelining: true
+    ansible_python_interpreter: /usr/bin/python3
 
 - name: Join nodes to databases
   citus_node:
@@ -49,3 +51,4 @@
   when: groups['worker'] is defined and inventory_hostname in groups['worker']
   vars:
     ansible_ssh_pipelining: true
+    ansible_python_interpreter: /usr/bin/python3
