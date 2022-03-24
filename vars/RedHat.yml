@@ -10,6 +10,7 @@ packages:
   - python3-setuptools
   - python3-wheel.noarch
   - "postgresql{{ pgsql_release }}-devel"
+  - procps-ng
 
 # Set postgresql configuration pah
 pgsql_config_directory: "/var/lib/pgsql/{{ pgsql_release }}/data"

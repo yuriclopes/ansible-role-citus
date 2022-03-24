@@ -62,7 +62,9 @@ ssl: off
 
 # - Memory -
 
-shared_buffers: 128MB
+## Defaults 25% total RAM
+# shared_buffers: "128MB"
+
 # huge_pages: try
 # huge_page_size: 0
 # temp_buffers: 8MB
@@ -301,7 +303,7 @@ min_wal_size: 80MB
 # debug_print_plan: off
 # debug_pretty_print: on
 
-# log_autovacuum_min_duration: -1
+log_autovacuum_min_duration: '250ms'
 # log_checkpoints: off
 # log_connections: off
 # log_disconnections: off
@@ -316,7 +318,7 @@ log_line_prefix: '%m [%p] %q%u@%d '
 # log_statement: 'none'
 # log_replication_commands: off
 # log_temp_files: -1
-log_timezone: 'US/Eastern'
+log_timezone: 'GMT'
 
 #------------------------------------------------------------------------------
 # PROCESS TITLE
@@ -351,8 +353,8 @@ stats_temp_directory: "/var/run/postgresql/{{ pgsql_release }}-main.pg_stat_tmp"
 # AUTOVACUUM
 #------------------------------------------------------------------------------
 
-# autovacuum: on
-# autovacuum_max_workers: 3
+autovacuum: on
+autovacuum_max_workers: 3
 # autovacuum_naptime: 1min
 # autovacuum_vacuum_threshold: 50
 # autovacuum_vacuum_insert_threshold: 1000

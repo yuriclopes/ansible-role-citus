@@ -1,3 +1,4 @@
+{% set half_ram = '%sMB' | format((ansible_memtotal_mb / 2)| round | int) %}
 ######################
 # Managed by Ansible #
 ######################
@@ -126,9 +127,7 @@ min_parallel_table_scan_size = {{ min_parallel_table_scan_size }}
 min_parallel_index_scan_size = {{ min_parallel_index_scan_size }}
 {% endif -%}
 
-{% if effective_cache_size is defined %}
-effective_cache_size = {{ effective_cache_size }}
-{% endif -%}
+effective_cache_size = {{ effective_cache_size | default(half_ram) }}
 
 {% if jit_above_cost is defined %}
 jit_above_cost = {{ jit_above_cost }}

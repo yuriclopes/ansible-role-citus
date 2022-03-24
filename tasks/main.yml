@@ -25,6 +25,12 @@
   tags:
     - install
 
+- name: Include Tuning tasks
+  include_tasks: "configure/tuning.yml"
+  tags:
+    - install
+    - configure
+
 - name: Include PostgreSQL Configuration tasks
   include_tasks: "configure/postgresql.yml"
   tags:

@@ -1,2 +1,4 @@
 postgresql_pip_packages:
   - psycopg2
+
+thp_sys_path: /sys/kernel/mm/transparent_hugepage

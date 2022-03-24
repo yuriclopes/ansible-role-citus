@@ -1,3 +1,4 @@
+{% set shared_buffers_quarter = '%sMB' | format((ansible_memtotal_mb / 4)| round | int) %}
 ######################
 # Managed by Ansible #
 ######################
@@ -8,7 +9,7 @@
 
 # - Memory -
 
-shared_buffers = {{ shared_buffers }}
+shared_buffers = {{ shared_buffers | default(shared_buffers_quarter) }}
 
 {% if huge_pages is defined %}
 huge_pages = '{{ huge_pages }}'
