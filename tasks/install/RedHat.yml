@@ -6,23 +6,26 @@
 
 - name: Install postgresql yum repository
   ansible.builtin.package:
-    name: "https://download.postgresql.org/pub/repos/yum/reporpms/EL-{{ ansible_distribution_version }}-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
+    name: "https://download.postgresql.org/pub/repos/yum/reporpms/EL-{{ ansible_distribution_major_version }}-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
     state: present
 
 - name: Check if built-in PostgreSQL modules are enabled
   ansible.builtin.shell: "dnf -qy module list postgresql --enabled"
   register: dnf_pgsql_module
-  ignore_errors: yes
+  changed_when: False
+  failed_when: False
 
 - name: Disable the built-in PostgreSQL module
   ansible.builtin.shell: "dnf -qy module disable postgresql"
-  # when: ansible_distribution_version == "8" and not dnf_pgsql_module.failed
+  when: 
+    - ansible_distribution_major_version == "8"
+    - dnf_pgsql_module.stderr | replace(":","") != "Error No matching Modules to list"
 
 - name: Install citus yum repository
   ansible.builtin.yum_repository:
     name: citusdata_community
     state: present
-    baseurl: "https://packagecloud.io/citusdata/community/el/{{ ansible_distribution_version }}/$basearch"
+    baseurl: "https://packagecloud.io/citusdata/community/el/{{ ansible_distribution_major_version }}/$basearch"
     description: citusdata_community
     repo_gpgcheck: false
     gpgcheck: false
@@ -84,3 +87,20 @@
     owner: postgres
     group: postgres
     mode: 0700
+
+- name: Install wheel
+  ansible.builtin.pip:
+    name: wheel
+    state: present
+  tags:
+    - role_install
+
+- name: Install postgresql required pip packages
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ postgresql_pip_packages }}"
+  tags:
+    - role_install
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/usr/pgsql-{{ pgsql_release }}/bin/"

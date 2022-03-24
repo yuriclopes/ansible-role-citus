@@ -15,11 +15,6 @@
   tags:
     - role_install
 
-- name: Include PIP specific tasks
-  include_tasks: "install/pip.yml"
-  tags:
-    - role_install
-
 - name: Include PostgreSQL Configuration tasks
   include_tasks: "configure/postgresql.yml"
   tags:
