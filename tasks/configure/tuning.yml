@@ -1,0 +1,14 @@
+---
+- name: Apply sysctl_params
+  sysctl:
+    name: '{{ item.key }}'
+    value: '{{ item.value }}'
+    sysctl_set: yes
+    state: present
+    reload: yes
+    ignoreerrors: yes
+  with_dict: '{{ mongodb_sysctl_config }}'
+  become: true
+  tags:
+    - install
+    - configure

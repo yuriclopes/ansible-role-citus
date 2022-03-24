@@ -1,0 +1,8 @@
+sysctl_params:
+  vm.swappiness:  10
+  vm.dirty_expire_centisecs:  500
+  vm.dirty_writeback_centisecs:  250
+  vm.dirty_ratio:  10
+  vm.dirty_background_ratio:  3
+  vm.overcommit_memory: 0
+  net.ipv4.tcp_timestamps: 0

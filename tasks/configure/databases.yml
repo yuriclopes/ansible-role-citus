@@ -19,6 +19,10 @@
   vars:
     ansible_ssh_pipelining: true
     ansible_python_interpreter: /usr/bin/python3
+  tags:
+    - install
+    - configure
+    - databases
 
 - name: Install Citus extension to databases
   community.postgresql.postgresql_ext:
@@ -35,6 +39,10 @@
   vars:
     ansible_ssh_pipelining: true
     ansible_python_interpreter: /usr/bin/python3
+  tags:
+    - install
+    - configure
+    - databases
 
 - name: Join nodes to databases
   citus_node:
@@ -52,3 +60,7 @@
   vars:
     ansible_ssh_pipelining: true
     ansible_python_interpreter: /usr/bin/python3
+  tags:
+    - install
+    - configure
+    - databases

@@ -9,7 +9,7 @@
   retries: 12
   with_items: "{{ packages }}"
   tags:
-    - role_install
+    - install
 
 - name: Add an Apt signing key, uses whichever key is at the URL
   ansible.builtin.apt_key:
@@ -21,7 +21,7 @@
   retries: 12
   with_items: "{{ apt_keys }}"
   tags:
-    - role_install
+    - install
 
 - name: Install apt repositories
   ansible.builtin.apt_repository:
@@ -34,7 +34,7 @@
   retries: 12
   with_items: "{{ apt_repos }}"
   tags:
-    - role_install
+    - install
 
 - name: Ensure a locale exists
   community.general.locale_gen:
@@ -46,7 +46,7 @@
     - "{{ lc_numeric }}"
     - "{{ lc_time }}"
   tags:
-    - role_install
+    - install
 
 - name: Install Citus PostgreSQL package
   ansible.builtin.package:
@@ -56,18 +56,18 @@
   until: install_citus is success
   delay: 5
   retries: 12
-  tags:
-    - role_install
   notify:
     - Enable postgresql service
     - Start postgresql service
+  tags:
+    - install
 
 - name: Install wheel
   ansible.builtin.pip:
     name: wheel
     state: present
   tags:
-    - role_install
+    - install
 
 - name: Install postgresql required pip packages
   ansible.builtin.pip:
@@ -75,4 +75,4 @@
     state: present
   with_items: "{{ postgresql_pip_packages }}"
   tags:
-    - role_install
+    - install

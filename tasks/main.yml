@@ -5,32 +5,42 @@
   with_items:
     - "{{ ansible_os_family }}.yml"
     - default.yml
+  tags:
+    - install
+    - configure
+    - users
+    - databases
 
 - name: Get coordinator node host
   ansible.builtin.set_fact:
     coordinator_host: "{{ (coordinator_dns is defined) | ternary(coordinator_dns, hostvars[groups['coordinator'][0]].ansible_all_ipv4_addresses | ipaddr('private') | first ) }}"
+  tags:
+    - install
+    - configure
+    - users
+    - databases
 
 - name: Include OS specific tasks
   include_tasks: "install/{{ ansible_os_family }}.yml"
   tags:
-    - role_install
+    - install
 
 - name: Include PostgreSQL Configuration tasks
   include_tasks: "configure/postgresql.yml"
   tags:
-    - role_install
-    - role_configure
+    - install
+    - configure
 
 - name: Include PostgreSQL Databases tasks
   include_tasks: "configure/databases.yml"
   tags:
-    - role_install
-    - role_configure
-    - role_users
+    - install
+    - configure
+    - databases
 
 - name: Include PostgreSQL Users tasks
   include_tasks: "configure/users.yml"
   tags:
-    - role_install
-    - role_configure
-    - role_users
+    - install
+    - configure
+    - users
