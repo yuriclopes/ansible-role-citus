@@ -8,7 +8,6 @@ packages:
   - apt-transport-https
   - systemd
   - locales
-  - libpq-dev
   - python3-psycopg2
   - procps
 

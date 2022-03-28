@@ -116,15 +116,3 @@
     mode: 0700
   tags:
     - install
-
-- name: Install postgresql required pip packages
-  ansible.builtin.pip:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ postgresql_pip_packages }}"
-  environment:
-    PATH: "{{ ansible_env.PATH }}:/usr/pgsql-{{ pgsql_release }}/bin/"
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
-  tags:
-    - install

@@ -3,13 +3,7 @@ citus_package_name: "citus{{ citus_release | replace('.','') }}_{{ pgsql_release
 
 packages:
   - systemd
-  - gcc
-  - python3
-  - python3-pip
-  - python3-devel
-  - python3-setuptools
-  - python3-wheel.noarch
-  - "postgresql{{ pgsql_release }}-devel"
+  - python3-psycopg2
   - procps-ng
 
 # Set postgresql configuration pah
