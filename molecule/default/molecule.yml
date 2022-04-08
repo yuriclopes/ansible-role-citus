@@ -13,7 +13,7 @@ platforms:
     pre_build_image: true
     groups:
       - citus
-      - coordinator
+      - citus_coordinator
   - name: instance-worker
     image: "${MOLECULE_IMAGE:-yuriclopes/debian-molecule-test:11-slim}"
     command: "${IMAGE_COMMAND:-/sbin/init}"
@@ -23,7 +23,7 @@ platforms:
     pre_build_image: true
     groups:
       - citus
-      - worker
+      - citus_worker
 provisioner:
   name: ansible
   inventory:
