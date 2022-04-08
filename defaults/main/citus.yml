@@ -19,3 +19,7 @@ users: []
 databases: []
   # - name: appdb
   #   owner: postgres
+
+# Ansible Groups names
+citus_coordinator_group: citus_coordinator
+citus_worker_group: citus_worker

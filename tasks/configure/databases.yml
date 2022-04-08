@@ -56,7 +56,7 @@
   become: true
   become_user: postgres
   with_items: "{{ databases }}"
-  when: groups['worker'] is defined and inventory_hostname in groups['worker']
+  when: groups[citus_worker_group] is defined and inventory_hostname in groups[citus_worker_group]
   vars:
     ansible_ssh_pipelining: true
     ansible_python_interpreter: /usr/bin/python3
