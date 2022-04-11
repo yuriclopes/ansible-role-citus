@@ -23,3 +23,12 @@ databases: []
 # Ansible Groups names
 citus_coordinator_group: citus_coordinator
 citus_worker_group: citus_worker
+
+# List of pg_hba rules to add
+pg_hba_rules: []
+# pg_hba_rules:
+#   - connection: host
+#     database: test
+#     user: test
+#     address: 192.168.0.0/24
+#     auth_method: scram-sha-256

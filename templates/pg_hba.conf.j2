@@ -21,3 +21,7 @@ host    replication     all             ::1/128                 scram-sha-256
 {% for item in hostvars.values() %}
 host    all             all             {{ item.ansible_all_ipv4_addresses | ipaddr('private') | first }}/32            trust
 {% endfor %}
+
+{% for item in pg_hba_rules %}
+{{ item.connection }}   {{ item.database }}     {{ item.user }}     {{ item.address }}      {{ item.auth_method }} 
+{% endfor %}
