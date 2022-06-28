@@ -56,7 +56,7 @@
     db: postgres
     login_host: localhost
     login_user: postgres
-    login_password: "{{ postgres_password }}"
+    login_password: "{{ postgres_password | default(omit) }}"
   register: postgres_ping
   vars:
     ansible_python_interpreter: /usr/bin/python3
