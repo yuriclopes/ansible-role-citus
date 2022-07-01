@@ -9,6 +9,7 @@
   tags:
     - install
     - configure
+    - postgresql-conf
 
 - name: Create postgresql.conf.d files
   ansible.builtin.template:
@@ -36,6 +37,7 @@
   tags:
     - install
     - configure
+    - postgresql-conf
 
 - name: Create pg_hba.conf file
   ansible.builtin.template:
@@ -47,6 +49,7 @@
   tags:
     - install
     - configure
+    - postgresql-hba
 
 - name: Flush handlers to create PostgreSQL Objects
   ansible.builtin.meta: flush_handlers
