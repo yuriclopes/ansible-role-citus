@@ -46,6 +46,7 @@
     owner: postgres
     group: postgres
     mode: 0644
+  register: pg_hba_stats
   tags:
     - install
     - configure
@@ -84,3 +85,22 @@
   tags:
     - install
     - configure
+
+- name: Reload pg_hba.conf
+  community.postgresql.postgresql_query:
+    query: "SELECT pg_reload_conf();"
+    db: postgres
+    login_host: localhost
+    login_user: postgres
+    login_unix_socket: "{{ unix_socket_directories }}"
+    port: "{{ port }}"
+  become: true
+  become_user: postgres
+  vars:
+    ansible_ssh_pipelining: true
+    ansible_python_interpreter: /usr/bin/python3
+  when: pg_hba_stats.changed
+  tags:
+    - install
+    - configure
+    - postgresql-hba

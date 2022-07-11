@@ -38,6 +38,12 @@ provisioner:
             expires: infinity
             groups: []
             privileges: CONNECT/CREATE
+          - name: postgres_exporter
+            database: postgres
+            password: postgres_exporter
+            groups:
+              - pg_monitor
+            privileges: CONNECT
         databases:
           - name: my_db
         postgres_password: 123changeme
