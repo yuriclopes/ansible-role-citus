@@ -1,0 +1,16 @@
+[Unit]
+Description=PostgreSQL Exporter
+
+[Service]
+User={{ postgres_exporter_user }}
+Group={{ postgres_exporter_user }}
+EnvironmentFile=-/etc/default/postgres_exporter
+ExecStart=/usr/local/bin/postgres_exporter 
+
+SyslogIdentifier=postgres_exporter
+Restart=always
+RestartSec=1
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target

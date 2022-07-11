@@ -2,3 +2,7 @@ postgresql_pip_packages:
   - psycopg2
 
 thp_sys_path: /sys/kernel/mm/transparent_hugepage
+
+postgres_exporter_version: 0.10.1
+postgres_exporter_url: "https://github.com/prometheus-community/postgres_exporter/releases/download/v{{ postgres_exporter_version }}/postgres_exporter-{{ postgres_exporter_version }}.linux-amd64.tar.gz"
+postgres_exporter_sha256: 5344afe06a90c3cbd52803d56031bfcbcff78b56448e16c9228697ea0a2577b7

@@ -1,0 +1,71 @@
+---
+- name: Create the postgres_exporter group
+  group:
+    name: "{{ postgres_exporter_user }}"
+    state: present
+    system: true
+
+- name: Create the postgres_exporter user
+  user:
+    name: "{{ postgres_exporter_user }}"
+    groups: "{{ postgres_exporter_user }}"
+    append: true
+    shell: /usr/sbin/nologin
+    system: true
+    create_home: false
+
+- block:
+    - name: Download postgres_exporter binary to local folder
+      become: false
+      get_url:
+        url: "{{ postgres_exporter_url }}"
+        dest: "/tmp/postgres_exporter-{{ postgres_exporter_version }}.linux-amd64.tar.gz"
+        checksum: "sha256:{{ postgres_exporter_sha256 }}"
+        mode: '0644'
+      register: _download_binary
+      until: _download_binary is succeeded
+      retries: 5
+      delay: 2
+      delegate_to: localhost
+      check_mode: false
+
+    - name: Unpack postgres_exporter binary
+      become: false
+      unarchive:
+        src: "/tmp/postgres_exporter-{{ postgres_exporter_version }}.linux-amd64.tar.gz"
+        dest: "/tmp"
+        creates: "/tmp/postgres_exporter-{{ postgres_exporter_version }}.linux-amd64/postgres_exporter"
+      delegate_to: localhost
+      check_mode: false
+
+    - name: Propagate postgres_exporter binaries
+      copy:
+        src: "/tmp/postgres_exporter-{{ postgres_exporter_version }}.linux-amd64/postgres_exporter"
+        dest: "/usr/local/bin/postgres_exporter"
+        mode: 0755
+        owner: root
+        group: root
+      notify: Restart postgresql exporter service
+      when: not ansible_check_mode
+
+- name: Copy the postgres_exporter systemd service file
+  template:
+    src: postgres-exporter/postgres_exporter.service.j2
+    dest: /etc/systemd/system/postgres_exporter.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Daemon reload
+    - Enable postgresql exporter service
+    - Restart postgresql exporter service
+
+- name: Create the postgres_exporter environment file
+  template:
+    src: postgres-exporter/postgres_exporter.environment.j2
+    dest: /etc/default/postgres_exporter
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart postgresql exporter service

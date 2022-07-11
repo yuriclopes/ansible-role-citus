@@ -32,3 +32,32 @@ pg_hba_rules: []
 #     user: test
 #     address: 192.168.0.0/24
 #     auth_method: scram-sha-256
+
+# PostgreSQL Prometheus Exporter
+postgres_exporter_enabled: true
+postgres_exporter_user: postgres_exporter
+postgres_exporter_password: postgres_exporter
+postgres_exporter_environment:
+  DATA_SOURCE_URI: "localhost:{{port}}/postgres?sslmode=disable"
+  DATA_SOURCE_USER: "{{ postgres_exporter_user }}"
+  DATA_SOURCE_PASS: "{{ postgres_exporter_password }}"
+
+# List of all postgres_exporter_environment parameters
+# postgres_exporter_environment:
+#   DATA_SOURCE_NAME: ""
+#   DATA_SOURCE_URI: ""
+#   DATA_SOURCE_URI_FILE: ""
+#   DATA_SOURCE_USER: ""
+#   DATA_SOURCE_USER_FILE: ""
+#   DATA_SOURCE_PASS: ""
+#   DATA_SOURCE_PASS_FILE: ""
+#   PG_EXPORTER_WEB_LISTEN_ADDRESS: ""
+#   PG_EXPORTER_WEB_TELEMETRY_PATH: ""
+#   PG_EXPORTER_DISABLE_DEFAULT_METRICS: ""
+#   PG_EXPORTER_DISABLE_SETTINGS_METRICS: ""
+#   PG_EXPORTER_AUTO_DISCOVER_DATABASES: ""
+#   PG_EXPORTER_EXTEND_QUERY_PATH: ""
+#   PG_EXPORTER_CONSTANT_LABELS: ""
+#   PG_EXPORTER_EXCLUDE_DATABASES: ""
+#   PG_EXPORTER_INCLUDE_DATABASES: ""
+#   PG_EXPORTER_METRIC_PREFIX: ""

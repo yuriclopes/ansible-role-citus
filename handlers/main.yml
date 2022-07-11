@@ -32,3 +32,13 @@
   ansible.builtin.systemd:
     name: "disable-thp.service"
     state: started
+
+- name: Enable postgresql exporter service
+  ansible.builtin.systemd:
+    name: "postgres_exporter.service"
+    enabled: yes
+
+- name: Restart postgresql exporter service
+  ansible.builtin.systemd:
+    name: "postgres_exporter.service"
+    state: restarted

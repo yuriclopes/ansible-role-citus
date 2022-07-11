@@ -12,6 +12,7 @@
     - databases
     - postgresql-conf
     - postgresql-hba
+    - exporter
 
 - name: Get coordinator node host
   ansible.builtin.set_fact:
@@ -23,6 +24,7 @@
     - databases
     - postgresql-conf
     - postgresql-hba
+    - exporter
 
 - name: Include OS specific tasks
   include_tasks: "install/{{ ansible_os_family }}.yml"
@@ -56,3 +58,10 @@
     - install
     - configure
     - users
+
+- name: Include Exporter specific tasks
+  include_tasks: "install/Exporter.yml"
+  tags:
+    - install
+    - exporter
+  when: postgres_exporter_enabled
