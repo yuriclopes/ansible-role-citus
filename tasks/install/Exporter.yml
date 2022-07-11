@@ -1,12 +1,12 @@
 ---
 - name: Create the postgres_exporter group
-  group:
+  ansible.builtin.group:
     name: "{{ postgres_exporter_user }}"
     state: present
     system: true
 
 - name: Create the postgres_exporter user
-  user:
+  ansible.builtin.user:
     name: "{{ postgres_exporter_user }}"
     groups: "{{ postgres_exporter_user }}"
     append: true
@@ -17,7 +17,7 @@
 - block:
     - name: Download postgres_exporter binary to local folder
       become: false
-      get_url:
+      ansible.builtin.get_url:
         url: "{{ postgres_exporter_url }}"
         dest: "/tmp/postgres_exporter-{{ postgres_exporter_version }}.linux-amd64.tar.gz"
         checksum: "sha256:{{ postgres_exporter_sha256 }}"
@@ -31,7 +31,7 @@
 
     - name: Unpack postgres_exporter binary
       become: false
-      unarchive:
+      ansible.builtin.unarchive:
         src: "/tmp/postgres_exporter-{{ postgres_exporter_version }}.linux-amd64.tar.gz"
         dest: "/tmp"
         creates: "/tmp/postgres_exporter-{{ postgres_exporter_version }}.linux-amd64/postgres_exporter"
@@ -39,7 +39,7 @@
       check_mode: false
 
     - name: Propagate postgres_exporter binaries
-      copy:
+      ansible.builtin.copy:
         src: "/tmp/postgres_exporter-{{ postgres_exporter_version }}.linux-amd64/postgres_exporter"
         dest: "/usr/local/bin/postgres_exporter"
         mode: 0755
@@ -49,7 +49,7 @@
       when: not ansible_check_mode
 
 - name: Copy the postgres_exporter systemd service file
-  template:
+  ansible.builtin.template:
     src: postgres-exporter/postgres_exporter.service.j2
     dest: /etc/systemd/system/postgres_exporter.service
     owner: root
@@ -61,7 +61,7 @@
     - Restart postgresql exporter service
 
 - name: Create the postgres_exporter environment file
-  template:
+  ansible.builtin.template:
     src: postgres-exporter/postgres_exporter.environment.j2
     dest: /etc/default/postgres_exporter
     owner: root
