@@ -99,7 +99,7 @@
   vars:
     ansible_ssh_pipelining: true
     ansible_python_interpreter: /usr/bin/python3
-  # when: pg_hba_stats.changed
+  when: pg_hba_stats.changed
   tags:
     - install
     - configure
