@@ -46,7 +46,7 @@
     owner: postgres
     group: postgres
     mode: 0644
-  register: pg_hba_stats
+  notify: Reload pg_hba.conf
   tags:
     - install
     - configure

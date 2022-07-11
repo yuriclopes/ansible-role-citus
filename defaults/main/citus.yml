@@ -38,7 +38,7 @@ postgres_exporter_enabled: true
 postgres_exporter_user: postgres_exporter
 postgres_exporter_password: postgres_exporter
 postgres_exporter_environment:
-  DATA_SOURCE_URI: "localhost:{{port}}/postgres?sslmode=disable"
+  DATA_SOURCE_URI: "localhost:{{ port }}/postgres?sslmode=disable"
   DATA_SOURCE_USER: "{{ postgres_exporter_user }}"
   DATA_SOURCE_PASS: "{{ postgres_exporter_password }}"
 
