@@ -14,7 +14,8 @@
     system: true
     create_home: false
 
-- block:
+- name: Download exporter block
+  block:
     - name: Download postgres_exporter binary to local folder
       become: false
       ansible.builtin.get_url:
