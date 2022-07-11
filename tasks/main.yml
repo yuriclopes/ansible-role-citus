@@ -10,6 +10,8 @@
     - configure
     - users
     - databases
+    - postgresql-conf
+    - postgresql-hba
 
 - name: Get coordinator node host
   ansible.builtin.set_fact:
@@ -19,6 +21,8 @@
     - configure
     - users
     - databases
+    - postgresql-conf
+    - postgresql-hba
 
 - name: Include OS specific tasks
   include_tasks: "install/{{ ansible_os_family }}.yml"
@@ -36,6 +40,8 @@
   tags:
     - install
     - configure
+    - postgresql-conf
+    - postgresql-hba
 
 - name: Include PostgreSQL Databases tasks
   include_tasks: "configure/databases.yml"
